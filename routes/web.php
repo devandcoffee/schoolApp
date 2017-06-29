@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.home');
-});
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', [
+        'uses' => 'HomeController@index',
+        'as' => 'home'
+    ]);
 
-Route::get('/admin', function () {
-    return view('admin.home');
-});
-
-Route::get('/login', function () {
-    return view('admin.auth.login');
+    Route::get('/home', [
+        'uses' => 'HomeController@index',
+        'as' => 'home'
+    ]);
 });
 
 Route::get('/charts', function () {
@@ -78,3 +78,7 @@ Route::get('/progressbars', function() {
 Route::get('/collapse', function() {
     return View::make('admin.collapse');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
