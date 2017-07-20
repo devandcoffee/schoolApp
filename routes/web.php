@@ -13,13 +13,18 @@
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/', [
-        'uses' => 'HomeController@index',
-        'as' => 'home'
+        'uses' => 'StudentController@index',
+        'as' => 'students',
     ]);
 
     Route::get('/home', [
         'uses' => 'HomeController@index',
-        'as' => 'home'
+        'as' => 'home',
+    ]);
+
+    Route::get('/students', [
+        'uses' => 'StudentController@index',
+        'as' => 'students',
     ]);
 });
 
@@ -80,5 +85,3 @@ Route::get('/collapse', function() {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');

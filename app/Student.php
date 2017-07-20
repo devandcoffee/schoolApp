@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
 
+    public $with = ['person'];
+
     protected $fillable = [
         'user_id',
         'person_id',
@@ -17,7 +19,7 @@ class Student extends Model
      */
     public function person()
     {
-        return $this->hasOne('App\Person');
+        return $this->belongsTo('App\Person');
     }
 
     /**
@@ -25,7 +27,7 @@ class Student extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
 
 }

@@ -21,9 +21,11 @@
 
 </head>
 <body>
-@yield('body')
+<div id="app">
+    @yield('body')
+</div>
 
-<script src="{{ asset("js/app.js") }}"></script>
+<script src="/js/app.js"></script>
 <script src="{{ asset("js/Chart.js") }}"></script>
 <script src="{{ asset("js/admin.js") }}"></script>
 </body>

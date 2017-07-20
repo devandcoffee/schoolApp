@@ -10,7 +10,7 @@ class Person extends Model
     protected $table = 'persons';
 
     protected $fillable = [
-        'indentity_id',
+        'identity_id',
         'firstname',
         'lastname',
         'avatar',
@@ -20,5 +20,16 @@ class Person extends Model
         'location',
     ];
 
+    public function scopeFilter($query, $filter)
+    {
+        if ($filter) {
+            $value = "%{$filter}%";
+            $query->where('firstname', 'ilike', $value)
+                ->orWhere('lastname', 'ilike', $value)
+                ->orWhere('identity_id', 'like', $value);
+        }
+
+        return $query;
+    }
 
 }

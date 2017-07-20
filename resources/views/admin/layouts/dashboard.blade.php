@@ -257,6 +257,9 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        <li class="{{ (Request::is('*students') ? 'active' : '') }}">
+                            <a href="{{ url ('students') }}"><i class="fa fa-dashboard fa-fw"></i> Students</a>
+                        </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
                             <a href="{{ url ('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
