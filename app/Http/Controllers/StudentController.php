@@ -98,23 +98,19 @@ class StudentController extends Controller
         $data = array();
         $students = Student::whereHas('person', function($query) use($request) {
             $query->filter($request->filter);
-        })->get();
-        foreach ($students as $student) {
-            $item = new \stdClass();
-            $item->id = $student->id;
-            $item->dni = $student->person->identity_id;
-            $item->firstname = $student->person->firstname;
-            $item->lastname = $student->person->lastname;
-            $item->email = $student->person->email;
-            $item->avatar = $student->person->avatar;
-            $item->gender = $student->person->gender;
-            $item->birthdate = $student->person->birthdate;
-            $item->location = $student->person->location;
-            $item->created_at = $student->created_at;
-            $item->updated_at = $student->updated_at;
+        })->paginate(10);
 
-            array_push($data, $item);
+        foreach ($students as $student) {
+            $student->dni = $student->person->identity_id;
+            $student->firstname = $student->person->firstname;
+            $student->lastname = $student->person->lastname;
+            $student->email = $student->person->email;
+            $student->avatar = $student->person->avatar;
+            $student->gender = $student->person->gender;
+            $student->birthdate = $student->person->birthdate;
+            $student->location = $student->person->location;
         }
-        return $data;
+        $students->appends(['filter' => $request->filter]);
+        return response()->json($students);
     }
 }
