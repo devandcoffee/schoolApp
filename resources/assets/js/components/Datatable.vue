@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="datatable">
         <form>
             <div class="form-group">
                 <label>Search by all fields</label>
@@ -12,12 +12,20 @@
                     <th v-for="key in columns">
                         {{ key | capitalize }}
                     </th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="elem in filteredData">
                     <td v-for="key in columns">
                         {{elem[key]}}
+                    </td>
+                    <td>
+                        <a :href="`/${dataType}/${elem['id']}/edit`"><i class="fa-pencil"></i></a>
+                    </td>
+                    <td>
+                        <a :href="`/${dataType}/${elem['id']}/destroy`"><i class="fa-trash-o"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -56,7 +64,7 @@
                 filterInput: '',
                 perPage: 10,
                 currentPage: 1,
-                lastPage: null,
+                lastPage: null
             }
         },
         methods: {
@@ -65,6 +73,7 @@
                 let page = this.currentPage
                 axios.get(`/api/v1/${this.dataType}`, { params: { filter, page } })
                     .then((response) => {
+                        console.log(response)
                         this.filteredData = response.data.data
                         this.lastPage = response.data.last_page
                         this.loading = false
@@ -113,5 +122,9 @@
 <style>
     .search-input {
         width: 50%;
+    }
+
+    .datatable a {
+        cursor: pointer;
     }
 </style>

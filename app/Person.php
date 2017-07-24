@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
@@ -30,6 +31,11 @@ class Person extends Model
         }
 
         return $query;
+    }
+
+    public function getAvatarAttribute($avatar)
+    {
+        return asset(Storage::url($avatar));
     }
 
 }

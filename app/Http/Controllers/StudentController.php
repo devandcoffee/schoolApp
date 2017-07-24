@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
-
 use App\Student;
 
 class StudentController extends Controller
@@ -67,7 +67,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        return view('admin.students.edit')->with('student', $student);
     }
 
     /**
@@ -79,7 +80,37 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'identity_id' => 'required|numeric',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'avatar' => 'image',
+            'gender' => 'required',
+            'birthdate' => 'required|date',
+            'location' => 'required',
+        ]);
+
+        $student = Student::find($id);
+        $student->person()->update([
+            'identity_id' => $request->identity_id,
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'birthdate' => $request->birthdate,
+            'location' => $request->location,
+        ]);
+
+        if($request->hasFile('avatar'))
+        {
+            $student->person()->update([
+                'avatar' => $request->avatar->store('public/avatars'),
+            ]);
+        }
+
+        Session::flash('success', 'Student updated');
+        return redirect()->route('students');
     }
 
     /**

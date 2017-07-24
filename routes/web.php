@@ -26,6 +26,16 @@ Route::group(['middleware' => 'auth'], function(){
         'uses' => 'StudentController@index',
         'as' => 'students',
     ]);
+
+    Route::get('/students/{id}/edit', [
+        'uses' => 'StudentController@edit',
+        'as' => 'students.edit',
+    ]);
+
+    Route::post('/students/{id}/update', [
+        'uses' => 'StudentController@update',
+        'as' => 'students.update',
+    ]);
 });
 
 Route::get('/charts', function () {
