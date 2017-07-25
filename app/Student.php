@@ -10,7 +10,7 @@ class Student extends Model
     public $with = ['person'];
 
     protected $fillable = [
-        'user_id',
+        //'user_id',
         'person_id',
     ];
 
@@ -25,9 +25,9 @@ class Student extends Model
     /**
      * Get the user record associated with the student.
      */
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    //public function user()
+    //{
+    //    return $this->belongsTo('App\User');
+    //}
 
 }

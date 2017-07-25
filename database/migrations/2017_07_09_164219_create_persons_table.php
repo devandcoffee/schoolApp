@@ -18,8 +18,8 @@ class CreatePersonsTable extends Migration
             $table->string('identity_id', 20);
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('avatar');
-            $table->string('email');
+            $table->string('avatar')->default('public/defaults/avatars/male.png');
+            $table->string('email')->unique();
             $table->enum('gender', ['male', 'female']);
             $table->timestamp('birthdate');
             $table->string('location')->nullable();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\Student;
+use App\Person;
 
 class StudentController extends Controller
 {
@@ -34,7 +35,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.students.create');
     }
 
     /**
@@ -45,7 +46,39 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'identity_id' => 'required|numeric',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email',
+            'avatar' => 'image',
+            'gender' => 'required',
+            'birthdate' => 'required|date',
+            'location' => 'required',
+        ]);
+
+        $person = new Person;
+        $person->identity_id = $request->identity_id;
+        $person->firstname = $request->firstname;
+        $person->lastname = $request->lastname;
+        $person->email = $request->email;
+        $person->gender = $request->gender;
+        $person->birthdate = $request->birthdate;
+        $person->location = $request->location;
+
+        if($request->hasFile('avatar'))
+        {
+            $person->avatar = $request->avatar->store('public/avatars');
+        }
+
+        $person->save();
+
+        $student = Student::create([
+            'person_id' => $person->id,
+        ]);
+
+        Session::flash('success', 'Student created');
+        return redirect()->route('students');
     }
 
     /**
