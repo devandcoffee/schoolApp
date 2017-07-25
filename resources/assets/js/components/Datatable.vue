@@ -22,10 +22,10 @@
                         {{elem[key]}}
                     </td>
                     <td>
-                        <a :href="`/${dataType}/${elem['id']}/edit`"><i class="fa-pencil"></i></a>
+                        <a :href="`/${dataType}/${elem['id']}/edit`"><span class="fa-pencil"></span></a>
                     </td>
                     <td>
-                        <a :href="`/${dataType}/${elem['id']}/destroy`"><i class="fa-trash-o"></i></a>
+                        <a :href="`/${dataType}/${elem['id']}/destroy`"><span class="fa-trash-o"></span></a>
                     </td>
                 </tr>
             </tbody>
