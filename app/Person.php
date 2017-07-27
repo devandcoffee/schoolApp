@@ -4,9 +4,12 @@ namespace App;
 
 use Storage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
+
+    use SoftDeletes;
 
     protected $table = 'persons';
 
@@ -20,6 +23,8 @@ class Person extends Model
         'birthdate',
         'location',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function scopeFilter($query, $filter)
     {

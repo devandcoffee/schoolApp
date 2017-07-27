@@ -155,8 +155,10 @@ class StudentController extends Controller
     public function destroy($id, Request $request)
     {
         $student = Student::find($id);
+        $person = $student->person();
 
         $student->delete();
+        $person->delete();
 
         return $this->students($request);
     }

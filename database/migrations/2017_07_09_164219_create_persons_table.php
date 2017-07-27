@@ -24,6 +24,7 @@ class CreatePersonsTable extends Migration
             $table->timestamp('birthdate');
             $table->string('location')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

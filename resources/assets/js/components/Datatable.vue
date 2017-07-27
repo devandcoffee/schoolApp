@@ -80,6 +80,7 @@
             },
             filterData: _.debounce(
                 function() {
+                    this.currentPage = 1
                     this.getData()
                 },
                 500
