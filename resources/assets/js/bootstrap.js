@@ -14,6 +14,7 @@ try {
 } catch (e) {}
 
 require('sweetalert2');
+window.Noty = require('noty');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
