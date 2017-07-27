@@ -18,8 +18,9 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="form-horizontal" action="{{ route('students.update', ['id' => $student->id]) }}" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal" action="{{ route('students.update', ['id' => $student->id]) }}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <input name="_method" type="hidden" value="PUT">
 
                             <div class="form-group">
                                 <div class="col-sm-2">

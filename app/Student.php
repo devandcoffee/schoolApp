@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
+
+    use SoftDeletes;
 
     public $with = ['person'];
 
@@ -13,6 +16,8 @@ class Student extends Model
         //'user_id',
         'person_id',
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * Get the person record associated with the student.

@@ -25,7 +25,7 @@
                         <a :href="`/${dataType}/${elem['id']}/edit`"><span class="fa-pencil"></span></a>
                     </td>
                     <td>
-                        <a :href="`/${dataType}/${elem['id']}/destroy`"><span class="fa-trash-o"></span></a>
+                        <a v-on:click.prevent="deleteRecord(elem['id'])"><span class="fa-trash-o"></span></a>
                     </td>
                 </tr>
             </tbody>
@@ -33,13 +33,13 @@
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <li v-bind:class="{disabled: currentPage === 1}">
-                    <a v-on:click="changePage('previous', $event)" aria-label="Previous">
+                    <a v-on:click.prevent="changePage('previous')" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li v-for="n in lastPage" v-bind:class="{active: n === currentPage}"><a v-on:click="goPage(n, $event)">{{n}}</a></li>
+                <li v-for="n in lastPage" v-bind:class="{active: n === currentPage}"><a v-on:click.prevent="goPage(n)">{{n}}</a></li>
                 <li v-bind:class="{disabled: currentPage === lastPage}">
-                    <a v-on:click="changePage('next', $event)" aria-label="Next">
+                    <a v-on:click.prevent="changePage('next')" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -73,7 +73,6 @@
                 let page = this.currentPage
                 axios.get(`/api/v1/${this.dataType}`, { params: { filter, page } })
                     .then((response) => {
-                        console.log(response)
                         this.filteredData = response.data.data
                         this.lastPage = response.data.last_page
                         this.loading = false
@@ -85,25 +84,37 @@
                 },
                 500
             ),
-            goPage(page, event) {
-                if (event) {
-                    event.preventDefault()
-                }
+            goPage(page) {
                 this.currentPage = page
                 this.getData()
             },
-            changePage(option, event) {
-                if (option === 'next') {
-                    if (this.currentPage < this.lastPage) {
-                        this.currentPage++
-                    }
+            changePage(option) {
+                if (option === 'next' && this.currentPage < this.lastPage) {
+                    this.currentPage++
                 }
-                if (option === 'previous') {
-                    if (this.currentPage > 1) {
-                        this.currentPage--
-                    }
+                if (option === 'previous' && this.currentPage > 1) {
+                    this.currentPage--
                 }
-                this.goPage(this.currentPage, event)
+                this.goPage(this.currentPage)
+            },
+            deleteRecord(id) {
+                swal({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then(() => {
+                    let filter = this.filterInput.toLowerCase()
+                    let page = this.currentPage
+                    axios.delete(`/${this.dataType}/${id}`, { params: { filter, page } })
+                        .then((response) => {
+                            this.filteredData = response.data.data
+                            this.lastPage = response.data.last_page
+                        })
+                })
             }
         },
         filters: {

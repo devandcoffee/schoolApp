@@ -13,6 +13,8 @@ try {
     require('bootstrap-sass');
 } catch (e) {}
 
+require('sweetalert2');
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -38,3 +40,4 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+window.swal = require('sweetalert2');

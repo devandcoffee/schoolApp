@@ -22,30 +22,8 @@ Route::group(['middleware' => 'auth'], function(){
         'as' => 'home',
     ]);
 
-    Route::get('/students', [
-        'uses' => 'StudentController@index',
-        'as' => 'students',
-    ]);
+    Route::resource('students', 'StudentController');
 
-    Route::get('/students/create', [
-        'uses' => 'StudentController@create',
-        'as' => 'students.create',
-    ]);
-
-    Route::post('/students', [
-        'uses' => 'StudentController@store',
-        'as' => 'students.store',
-    ]);
-
-    Route::get('/students/{id}/edit', [
-        'uses' => 'StudentController@edit',
-        'as' => 'students.edit',
-    ]);
-
-    Route::post('/students/{id}/update', [
-        'uses' => 'StudentController@update',
-        'as' => 'students.update',
-    ]);
 });
 
 Route::get('/charts', function () {
