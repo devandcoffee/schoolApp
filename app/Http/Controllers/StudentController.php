@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\StudentRequest;
 use App\Student;
 use App\Person;
 
@@ -44,19 +45,8 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        $this->validate($request, [
-            'identity_id' => 'required|numeric',
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email',
-            'avatar' => 'image',
-            'gender' => 'required',
-            'birthdate' => 'required|date',
-            'location' => 'required',
-        ]);
-
         $person = new Person;
         $person->identity_id = $request->identity_id;
         $person->firstname = $request->firstname;
@@ -111,19 +101,8 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentRequest $request, $id)
     {
-        $this->validate($request, [
-            'identity_id' => 'required|numeric',
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|email',
-            'avatar' => 'image',
-            'gender' => 'required',
-            'birthdate' => 'required|date',
-            'location' => 'required',
-        ]);
-
         $student = Student::find($id);
         $student->person()->update([
             'identity_id' => $request->identity_id,
