@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Session;
 use Illuminate\Http\Request;
-use App\Http\Requests\StudentRequest;
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use App\Student;
 use App\Person;
 
@@ -45,7 +46,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StudentRequest $request)
+    public function store(StoreStudentRequest $request)
     {
         $person = new Person;
         $person->identity_id = $request->identity_id;
@@ -88,9 +89,8 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        $student = Student::find($id);
         return view('admin.students.edit')->with('student', $student);
     }
 
@@ -101,9 +101,8 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StudentRequest $request, $id)
+    public function update(Student $student, UpdateStudentRequest $request)
     {
-        $student = Student::find($id);
         $student->person()->update([
             'identity_id' => $request->identity_id,
             'firstname' => $request->firstname,
@@ -131,9 +130,8 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Student $student, Request $request)
     {
-        $student = Student::find($id);
         $person = $student->person();
 
         $student->delete();
