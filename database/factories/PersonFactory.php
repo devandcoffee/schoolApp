@@ -1,14 +1,15 @@
 <?php
 
 $factory->define(App\Person::class, function (Faker\Generator $faker) {
+    $genderBool = $faker->boolean;
 
     return [
         'identity_id' => $faker->randomNumber(6),
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
-        'avatar' => 'https://gravatar.com/avatar/?s=200&d=retro',
+        'avatar' => $genderBool ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png',
         'email' => $faker->unique()->safeEmail,
-        'gender' => $faker->boolean ? 'male' : 'female',
+        'gender' => $genderBool ? 'male' : 'female',
         'birthdate' => $faker->date('Y-m-d', 'now'),
         'location' => $faker->city,
     ];

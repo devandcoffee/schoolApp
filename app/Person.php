@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
+
+    use SoftDeletes;
 
     protected $table = 'persons';
 
@@ -20,6 +24,8 @@ class Person extends Model
         'location',
     ];
 
+    protected $dates = ['deleted_at'];
+
     public function scopeFilter($query, $filter)
     {
         if ($filter) {
@@ -30,6 +36,11 @@ class Person extends Model
         }
 
         return $query;
+    }
+
+    public function getAvatarAttribute($avatar)
+    {
+        return asset(Storage::url($avatar));
     }
 
 }

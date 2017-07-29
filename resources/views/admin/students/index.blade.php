@@ -7,7 +7,9 @@
         <div class="row">
             <div class="col-sm-12">
                 @component('admin.widgets.panel')
-                    @slot('panelTitle', 'Students list')
+                    @slot('panelTitle')
+                        Student list <a href="{{ route('students.create') }}" class="btn btn-primary"><span class="fa-plus"></span></a>
+                    @endslot
                     @slot('panelBody')
                         <datatable data-type="students" :columns="{{ json_encode($columns) }}"></datatable>
                     @endslot

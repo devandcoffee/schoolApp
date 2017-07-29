@@ -26,7 +26,15 @@
 </div>
 
 <script src="/js/app.js"></script>
-<script src="{{ asset("js/Chart.js") }}"></script>
 <script src="{{ asset("js/admin.js") }}"></script>
+<script>
+    @if(Session::has('success'))
+        new Noty({
+            type: 'success',
+            layout: 'topRight',
+            text: '{{ Session::get('success') }}'
+        }).show();
+    @endif
+</script>
 </body>
 </html>
