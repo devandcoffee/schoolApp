@@ -147,90 +147,20 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li class="{{ (Request::is('*students') ? 'active' : '') }}">
-                            <a href="{{ url ('students') }}"><i class="fa fa-mortar-board fa-fw"></i> Students</a>
-                        </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-mortar-board fa-fw"></i> Students<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*panels') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('panels') }}">Panels and Collapsibles</a>
+                                <li class="{{ (Request::is('*students') ? 'active' : '') }}">
+                                    <a href="{{ url ('students') }}">List</a>
                                 </li>
-                                <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('buttons' ) }}">Buttons</a>
-                                </li>
-                                <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
-                                    <a href="{{ url('notifications') }}">Alerts</a>
-                                </li>
-                                <li {{ (Request::is('*typography') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('typography') }}">Typography</a>
-                                </li>
-                                <li {{ (Request::is('*icons') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('icons') }}"> Icons</a>
-                                </li>
-                                <li {{ (Request::is('*grid') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('grid') }}">Grid</a>
-                                </li>
-                                <li {{ (Request::is('*progressbars') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('progressbars') }}">Progressbars</a>
-                                </li>
-                                <li {{ (Request::is('*collapse') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('collapse') }}">Collapse</a>
-                                </li>
-                                <li {{ (Request::is('*stats') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('stats') }}">Stats</a>
+                                <li class="{{ (Request::is('*students/proceedings') ? 'active' : '') }}">
+                                    <a href="{{ url ('proceedings' ) }}">Proceedings</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li {{ (Request::is('*blank') ? 'class="active"' : '') }}>
-                                    <a href="{{ url ('blank') }}">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url ('login') }}">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li {{ (Request::is('*documentation') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('documentation') }}"><i class="fa fa-file-word-o fa-fw"></i> Documentation</a>
+                        <li class="{{ (Request::is('*users') ? 'active' : '') }}">
+                            <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> Users</a>
                         </li>
                     </ul>
                 </div>
