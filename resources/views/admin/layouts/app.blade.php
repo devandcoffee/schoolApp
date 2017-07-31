@@ -32,6 +32,7 @@
         new Noty({
             type: 'success',
             layout: 'topRight',
+            timeout: 2000,
             text: '{{ Session::get('success') }}'
         }).show();
     @endif
