@@ -1,8 +1,6 @@
 /node_modules
 /public/hot
-/public/storage/app/public/avatars
-/public/storage/framework
-/public/storage/logs
+/public/storage
 /public/css/
 /public/js/
 /storage/*.key
