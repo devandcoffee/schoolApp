@@ -148,19 +148,19 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-mortar-board fa-fw"></i> Students<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-mortar-board fa-fw"></i> @lang('messages.students.title')<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li class="{{ (Request::is('*students') ? 'active' : '') }}">
-                                    <a href="{{ url ('students') }}">List</a>
+                                    <a href="{{ url ('students') }}">@lang('messages.students.list')</a>
                                 </li>
                                 <li class="{{ (Request::is('*students/proceedings') ? 'active' : '') }}">
-                                    <a href="{{ url ('proceedings' ) }}">Proceedings</a>
+                                    <a href="{{ url ('proceedings' ) }}">@lang('messages.students.proceedings')</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li class="{{ (Request::is('*users') ? 'active' : '') }}">
-                            <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                            <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> @lang('messages.users.title')</a>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,8 @@
 @extends('admin.layouts.dashboard')
 
-@section('page_heading','Students')
+@section('page_heading')
+    @lang('messages.students.title')
+@endsection
 
 @section('section')
     <div class="col-sm-12">
@@ -8,7 +10,7 @@
             <div class="col-sm-12">
                 @component('admin.widgets.panel')
                     @slot('panelTitle')
-                        Student list <a href="{{ route('students.create') }}" class="btn btn-primary"><span class="fa-plus"></span></a>
+                        @lang('messages.students.list') <a href="{{ route('students.create') }}" class="btn btn-primary"><span class="fa-plus"></span></a>
                     @endslot
                     @slot('panelBody')
                         <datatable data-type="students" :columns="{{ json_encode($columns) }}"></datatable>
