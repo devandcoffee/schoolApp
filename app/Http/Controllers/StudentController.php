@@ -19,13 +19,13 @@ class StudentController extends Controller
     public function index()
     {
         $columns = [
-            'dni',
-            'firstname',
-            'lastname',
-            'email',
-            'gender',
-            'birthdate',
-            'location'
+            'identity_id' => __('messages.persons.identity_id'),
+            'firstname'   => __('messages.persons.firstname'),
+            'lastname'    => __('messages.persons.lastname'),
+            'email'       => __('messages.persons.email'),
+            'gender'      => __('messages.persons.gender'),
+            'birthdate'   => __('messages.persons.birthdate'),
+            'location'    => __('messages.persons.location'),
         ];
         return view('admin.students.index')->with('columns', $columns);
     }
@@ -148,7 +148,7 @@ class StudentController extends Controller
         })->paginate(10);
 
         foreach ($students as $student) {
-            $student->dni = $student->person->identity_id;
+            $student->identity_id = $student->person->identity_id;
             $student->firstname = $student->person->firstname;
             $student->lastname = $student->person->lastname;
             $student->email = $student->person->email;

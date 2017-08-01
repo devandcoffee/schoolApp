@@ -9,8 +9,8 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th v-for="key in columns">
-                        {{ key | capitalize }}
+                    <th v-for="(value, key) in columns">
+                        {{ value | capitalize }}
                     </th>
                     <th>Edit</th>
                     <th>Delete</th>
@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr v-for="elem in filteredData">
-                    <td v-for="key in columns">
+                    <td v-for="(value, key) in columns">
                         {{elem[key]}}
                     </td>
                     <td>
