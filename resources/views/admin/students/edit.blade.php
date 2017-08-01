@@ -27,36 +27,36 @@
                                     <img src="{{ $student->person->avatar }}" class="img-thumbnail" alt="">
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="exampleInputFile">Upload photo</label>
+                                    <label for="exampleInputFile">@lang('messages.persons.upload_avatar')</label>
                                     <input type="file" name="avatar" accept="image/*">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="dni" class="col-sm-2 control-label">DNI:</label>
+                                <label for="dni" class="col-sm-2 control-label">@lang('messages.persons.identity_id'):</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="identity_id" id="identity_id" placeholder="DNI" value="{{$student->person->identity_id}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="firstname" class="col-sm-2 control-label">Fistname:</label>
+                                <label for="firstname" class="col-sm-2 control-label">@lang('messages.persons.firstname'):</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Fistname" value="{{$student->person->firstname}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="lastname" class="col-sm-2 control-label">Lastname:</label>
+                                <label for="lastname" class="col-sm-2 control-label">@lang('messages.persons.lastname'):</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" value="{{$student->person->lastname}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label">Email:</label>
+                                <label for="email" class="col-sm-2 control-label">@lang('messages.persons.email'):</label>
                                 <div class="col-sm-6">
                                     <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{$student->person->email}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Gender:</label>
+                                <label class="col-sm-2 control-label">@lang('messages.persons.gender'):</label>
                                 <div class="col-sm-6">
                                     <div class="radio">
                                         <label>
@@ -71,21 +71,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="birthdate" class="col-sm-2 control-label">Birthdate:</label>
+                                <label for="birthdate" class="col-sm-2 control-label">@lang('messages.persons.birthdate'):</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Birthdate" value="{{$student->person->birthdate}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="location" class="col-sm-2 control-label">Location</label>
+                                <label for="location" class="col-sm-2 control-label">@lang('messages.persons.location')</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="location" id="location" placeholder="Location" value="{{$student->person->location}}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-6">
-                                    <a href="{{ route('students') }}" class="btn btn-default">Cancel</a>
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <a href="{{ route('students') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>
+                                    <button type="submit" class="btn btn-primary">@lang('messages.buttons.update')</button>
                                 </div>
                             </div>
                         </form>
