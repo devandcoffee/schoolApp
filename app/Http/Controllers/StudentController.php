@@ -154,7 +154,7 @@ class StudentController extends Controller
             $student->email = $student->person->email;
             $student->avatar = $student->person->avatar;
             $student->gender = $student->person->gender;
-            $student->birthdate = $student->person->birthdate;
+            $student->birthdate = $student->person->birthdate->format('d-m-Y');
             $student->location = $student->person->location;
         }
         $students->appends(['filter' => $request->filter]);

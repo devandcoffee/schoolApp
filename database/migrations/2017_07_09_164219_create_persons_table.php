@@ -21,7 +21,7 @@ class CreatePersonsTable extends Migration
             $table->string('avatar')->default('public/defaults/avatars/male.png');
             $table->string('email')->unique();
             $table->enum('gender', ['male', 'female']);
-            $table->timestamp('birthdate');
+            $table->date('birthdate')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
             $table->softDeletes();

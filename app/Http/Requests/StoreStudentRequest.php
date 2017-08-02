@@ -30,7 +30,7 @@ class StoreStudentRequest extends FormRequest
             'email' => 'required|email|unique:persons',
             'avatar' => 'image',
             'gender' => 'required',
-            'birthdate' => 'required|date',
+            'birthdate' => 'required|date_format:d-m-Y',
             'location' => 'required',
         ];
     }

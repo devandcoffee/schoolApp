@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <label for="birthdate" class="col-sm-2 control-label">@lang('messages.persons.birthdate'):</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Birthdate" value="{{$student->person->birthdate}}">
+                                    <input type="text" class="form-control datepicker" name="birthdate" id="birthdate" placeholder="Birthdate" value="{{$student->person->birthdate->format('d-m-Y')}}">
                                 </div>
                             </div>
                             <div class="form-group">

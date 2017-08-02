@@ -30,7 +30,7 @@ class UpdateStudentRequest extends FormRequest
             'email' => 'required|email',
             'avatar' => 'image',
             'gender' => 'required',
-            'birthdate' => 'required|date',
+            'birthdate' => 'required|date_format:d-m-Y',
             'location' => 'required',
         ];
     }

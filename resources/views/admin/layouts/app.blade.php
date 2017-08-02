@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ asset('libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}">
 
     <!-- Scripts -->
     <script>
@@ -25,8 +26,10 @@
     @yield('body')
 </div>
 
-<script src="/js/app.js"></script>
-<script src="{{ asset("js/admin.js") }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/admin.js') }}"></script>
+<script src="{{ asset('libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('libs/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js') }}"></script>
 <script>
     @if(Session::has('success'))
         new Noty({
@@ -36,6 +39,13 @@
             text: '{{ Session::get('success') }}'
         }).show();
     @endif
+</script>
+<script>
+    $('.datepicker').datepicker({
+        format: "dd-mm-yyyy",
+        language: "es",
+        autoclose: true
+    });
 </script>
 </body>
 </html>

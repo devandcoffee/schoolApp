@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label for="birthdate" class="col-sm-2 control-label">@lang('messages.persons.birthdate'):</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="birthdate" id="birthdate" placeholder="Birthdate">
+                                    <input type="text" class="form-control datepicker" name="birthdate" id="birthdate" placeholder="Birthdate">
                                 </div>
                             </div>
                             <div class="form-group">

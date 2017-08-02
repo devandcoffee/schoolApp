@@ -5,6 +5,7 @@ namespace App;
 use Storage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Person extends Model
 {
@@ -24,7 +25,7 @@ class Person extends Model
         'location',
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['birthdate', 'deleted_at'];
 
     public function scopeFilter($query, $filter)
     {
@@ -41,6 +42,11 @@ class Person extends Model
     public function getAvatarAttribute($avatar)
     {
         return asset(Storage::url($avatar));
+    }
+
+    public function setBirthdateAttribute($birthdate)
+    {
+        $this->attributes['birthdate'] = Carbon::createFromFormat('d-m-Y', $birthdate);
     }
 
 }
