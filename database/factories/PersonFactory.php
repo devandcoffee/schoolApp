@@ -10,7 +10,7 @@ $factory->define(App\Person::class, function (Faker\Generator $faker) {
         'avatar' => $genderBool ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png',
         'email' => $faker->unique()->safeEmail,
         'gender' => $genderBool ? 'male' : 'female',
-        'birthdate' => $faker->date('Y-m-d', 'now'),
+        'birthdate' => $faker->date('d-m-Y', 'now'),
         'location' => $faker->city,
     ];
 });
