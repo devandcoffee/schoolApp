@@ -6,6 +6,9 @@ require 'recipe/laravel.php';
 
 // Settings
 
+// Laravel shared dirs
+set('shared_dirs', []);
+
 // ssh settings
 set('ssh_type', 'native');
 set('ssh_multiplexing', true);
@@ -21,17 +24,11 @@ set('local_releases_list', function () {
 
 // Repository settings
 set('repository', 'git@github.com:devandcoffee/schoolApp.git');
-set('branch', 'master');
+set('branch', 'develop');
 
 set('local_bin/npm', function () {
     return runLocally('which npm')->toString();
 });
-
-// Laravel shared dirs
-set('shared_dirs', []);
-
-// Laravel writable dirs
-set('writable_dirs', []);
 
 // Hosts
 host('104.131.15.241')
@@ -72,6 +69,10 @@ task('docker_compose_up', function() {
     run("cd {{deploy_path}}/current && docker-compose up -d");
 });
 
+desc('Down docker containers');
+task('docker_compose_down', function() {
+    run("cd {{deploy_path}}/current && docker-compose down");
+});
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 after('deploy:failed', 'remove_local_release');
@@ -79,7 +80,6 @@ after('deploy:failed', 'remove_local_release');
 // Migrate database before symlink new release.
 
 after('docker_compose_up', 'artisan:migrate');
-after('artisan:migrate', 'artisan:db:seed');
 
 // Main task
 desc('Deploy your project');
@@ -87,6 +87,7 @@ task('deploy', [
     'deploy:prepare',
     'deploy:lock',
     'deploy:release',
+    'docker_compose_down',
     'local:update_code',
     'local:vendors_npm',
     'local:vendors',
