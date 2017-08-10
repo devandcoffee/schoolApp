@@ -159,8 +159,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li class="{{ (Request::is('*users') ? 'active' : '') }}">
-                            <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> @lang('messages.users.title')</a>
+                        <li class="{{ (Request::is('*principals') ? 'active' : '') }}">
+                            <a href="{{ url ('principals') }}"><i class="fa fa-suitcase fa-fw"></i> @lang('messages.principals.title')</a>
                         </li>
                     </ul>
                 </div>

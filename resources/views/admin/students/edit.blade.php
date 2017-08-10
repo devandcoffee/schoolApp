@@ -1,13 +1,17 @@
 @extends('admin.layouts.dashboard')
 
-@section('page_heading','Students')
+@section('page_heading')
+    @lang('messages.students.title')
+@endsection
 
 @section('section')
     <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-12">
                 @component('admin.widgets.panel')
-                    @slot('panelTitle', 'Update student data')
+                    @slot('panelTitle')
+                        @lang('messages.students.update')
+                    @endslot
                     @slot('panelBody')
                         @if ($errors->any())
                             <div class="alert alert-danger">

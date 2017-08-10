@@ -3,14 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Teacher extends Model
+class Principal extends Model
 {
+    protected $with = ['person'];
 
     protected $fillable = [
         'user_id',
         'person_id',
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * Get the person record associated with the teacher.
