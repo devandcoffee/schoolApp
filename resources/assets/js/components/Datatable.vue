@@ -9,7 +9,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th v-for="(value, key) in columns">
+                    <th v-for="(value, key) in config.columns">
                         {{ value | capitalize }}
                     </th>
                     <th>Edit</th>
@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr v-for="elem in filteredData">
-                    <td v-for="(value, key) in columns">
+                    <td v-for="(value, key) in config.columns">
                         {{elem[key]}}
                     </td>
                     <td>
@@ -55,7 +55,7 @@
         },
         props: [
             'dataType',
-            'columns'
+            'config'
         ],
         data(){
             return {

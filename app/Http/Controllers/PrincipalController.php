@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Helpers\Datatable;
 use App\Principal;
+use App\Teacher;
 use App\Person;
 use App\User;
 
@@ -18,16 +20,8 @@ class PrincipalController extends Controller
      */
     public function index()
     {
-        $columns = [
-            'identity_id' => __('messages.persons.identity_id'),
-            'firstname'   => __('messages.persons.firstname'),
-            'lastname'    => __('messages.persons.lastname'),
-            'email'       => __('messages.persons.email'),
-            'gender'      => __('messages.persons.gender'),
-            'birthdate'   => __('messages.persons.birthdate'),
-            'location'    => __('messages.persons.location'),
-        ];
-        return view('admin.principals.index')->with('columns', $columns);
+        $config = Datatable::getDatatableConfig();
+        return view('admin.principals.index')->with('config', $config);
     }
 
     /**
@@ -73,8 +67,12 @@ class PrincipalController extends Controller
                 'user_id'   => $user->id,
             ]);
         }
-        else {
-            // create a teacher
+        else if ($role == 'principal')
+        {
+            $teacher = Teacher::create([
+                'person_id' => $person->id,
+                'user_id'   => $user->id,
+            ]);
         }
 
         Session::flash('success', 'Principal created');

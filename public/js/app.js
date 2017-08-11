@@ -13870,7 +13870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getData();
     },
 
-    props: ['dataType', 'columns'],
+    props: ['dataType', 'config'],
     data: function data() {
         return {
             filteredData: [],
@@ -36744,10 +36744,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])]), _vm._v(" "), _c('table', {
     staticClass: "table table-bordered"
-  }, [_c('thead', [_c('tr', [_vm._l((_vm.columns), function(value, key) {
+  }, [_c('thead', [_c('tr', [_vm._l((_vm.config.columns), function(value, key) {
     return _c('th', [_vm._v("\n                    " + _vm._s(_vm._f("capitalize")(value)) + "\n                ")])
   }), _vm._v(" "), _c('th', [_vm._v("Edit")]), _vm._v(" "), _c('th', [_vm._v("Delete")])], 2)]), _vm._v(" "), _c('tbody', _vm._l((_vm.filteredData), function(elem) {
-    return _c('tr', [_vm._l((_vm.columns), function(value, key) {
+    return _c('tr', [_vm._l((_vm.config.columns), function(value, key) {
       return _c('td', [_vm._v("\n                    " + _vm._s(elem[key]) + "\n                ")])
     }), _vm._v(" "), _c('td', [_c('a', {
       attrs: {

@@ -13,7 +13,7 @@
                         @lang('messages.students.list') <a href="{{ route('students.create') }}" class="btn btn-primary"><span class="fa-plus"></span></a>
                     @endslot
                     @slot('panelBody')
-                        <datatable data-type="students" :columns="{{ json_encode($columns) }}"></datatable>
+                        <datatable data-type="students" :config="{{ json_encode($config) }}"></datatable>
                     @endslot
                 @endcomponent
             </div>

@@ -45,7 +45,8 @@ class PersonRequest extends FormRequest
                 $rules['email'] = 'required|email';
                 break;
             }
-            default:break;
+            default:
+                break;
         }
 
         return $rules;

@@ -6,6 +6,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Helpers\Datatable;
 use App\Student;
 use App\Person;
 
@@ -18,16 +19,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $columns = [
-            'identity_id' => __('messages.persons.identity_id'),
-            'firstname'   => __('messages.persons.firstname'),
-            'lastname'    => __('messages.persons.lastname'),
-            'email'       => __('messages.persons.email'),
-            'gender'      => __('messages.persons.gender'),
-            'birthdate'   => __('messages.persons.birthdate'),
-            'location'    => __('messages.persons.location'),
-        ];
-        return view('admin.students.index')->with('columns', $columns);
+        $config = Datatable::getDatatableConfig();
+        return view('admin.students.index')->with('config', $config);
     }
 
     /**

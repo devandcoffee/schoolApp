@@ -13,7 +13,7 @@
                         @lang('messages.principals.list') <a href="{{ route('principals.create') }}" class="btn btn-primary"><span class="fa-plus"></span></a>
                     @endslot
                     @slot('panelBody')
-                        <datatable data-type="principals" :columns="{{ json_encode($columns) }}"></datatable>
+                        <datatable data-type="principals" :config="{{ json_encode($config) }}"></datatable>
                     @endslot
                 @endcomponent
             </div>
