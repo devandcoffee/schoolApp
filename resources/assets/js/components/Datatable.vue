@@ -12,8 +12,8 @@
                     <th v-for="(value, key) in config.columns">
                         {{ value | capitalize }}
                     </th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th v-if="config.edit">Edit</th>
+                    <th v-if="config.delete">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,10 +21,10 @@
                     <td v-for="(value, key) in config.columns">
                         {{elem[key]}}
                     </td>
-                    <td>
+                    <td v-if="config.edit">
                         <a :href="`/${dataType}/${elem['id']}/edit`"><span class="fa-pencil"></span></a>
                     </td>
-                    <td>
+                    <td v-if="config.delete">
                         <a v-on:click.prevent="deleteRecord(elem['id'])"><span class="fa-trash-o"></span></a>
                     </td>
                 </tr>

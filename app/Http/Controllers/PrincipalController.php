@@ -20,7 +20,7 @@ class PrincipalController extends Controller
      */
     public function index()
     {
-        $config = Datatable::getDatatableConfig();
+        $config = Datatable::getDatatableConfig('principals');
         return view('admin.principals.index')->with('config', $config);
     }
 
