@@ -39,4 +39,8 @@ return [
         'create' => 'Crear',
         'update' => 'Actualizar',
     ],
+    'navbar' => [
+        'profile' => 'Mi perfil',
+        'logout'  => 'Cerrar sesión',
+    ],
 ];

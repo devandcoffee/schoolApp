@@ -39,4 +39,8 @@ return [
         'create' => 'Create',
         'Update' => 'Update',
     ],
+    'navbar' => [
+        'profile' => 'User Profile',
+        'logout'  => 'Logout',
+    ],
 ];

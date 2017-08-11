@@ -109,7 +109,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <a href="{{ route('principals.edit', ['id' => Auth::user()->principal->id]) }}"><i class="fa fa-user fa-fw"></i> @lang('messages.navbar.profile')</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
@@ -119,7 +119,7 @@
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                                <i class="fa fa-sign-out fa-fw"></i> @lang('messages.navbar.logout')
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
