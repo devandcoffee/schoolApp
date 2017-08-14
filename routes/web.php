@@ -17,12 +17,9 @@ Route::group(['middleware' => 'auth'], function(){
         'as' => 'students',
     ]);
 
-    Route::get('/home', [
-        'uses' => 'HomeController@index',
-        'as' => 'home',
-    ]);
-
     Route::resource('students', 'StudentController');
+
+    Route::resource('principals', 'PrincipalController');
 
 });
 

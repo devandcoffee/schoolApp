@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Session;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
+use App\Http\Requests\PersonRequest;
+use App\Helpers\Datatable;
 use App\Student;
 use App\Person;
 
@@ -18,16 +18,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $columns = [
-            'identity_id' => __('messages.persons.identity_id'),
-            'firstname'   => __('messages.persons.firstname'),
-            'lastname'    => __('messages.persons.lastname'),
-            'email'       => __('messages.persons.email'),
-            'gender'      => __('messages.persons.gender'),
-            'birthdate'   => __('messages.persons.birthdate'),
-            'location'    => __('messages.persons.location'),
-        ];
-        return view('admin.students.index')->with('columns', $columns);
+        $config = Datatable::getDatatableConfig();
+        return view('admin.students.index')->with('config', $config);
     }
 
     /**
@@ -46,7 +38,7 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStudentRequest $request)
+    public function store(PersonRequest $request)
     {
         $person = new Person;
         $person->identity_id = $request->identity_id;
@@ -101,7 +93,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Student $student, UpdateStudentRequest $request)
+    public function update(Student $student, PersonRequest $request)
     {
         $student->person()->update([
             'identity_id' => $request->identity_id,
@@ -142,7 +134,6 @@ class StudentController extends Controller
 
     public function students(Request $request)
     {
-        $data = array();
         $students = Student::whereHas('person', function($query) use($request) {
             $query->filter($request->filter);
         })->paginate(10);

@@ -23,5 +23,9 @@ Route::group(
         Route::get('/students', [
             'uses' => 'StudentController@students',
         ]);
+
+        Route::get('/principals', [
+            'uses' => 'PrincipalController@principals',
+        ]);
     }
 );

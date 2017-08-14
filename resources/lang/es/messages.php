@@ -5,6 +5,14 @@ return [
         'title'       => 'Alumnos',
         'list'        => 'Lista de Alumnos',
         'proceedings' => 'Actas',
+        'create'      => 'Agregar nuevo alumno',
+        'update'      => 'Actualizar datos del Alumno',
+    ],
+    'principals' => [
+        'title'       => 'Directores',
+        'list'        => 'Lista de directores',
+        'create'      => 'Agregar nuevo usuario',
+        'update'      => 'Actualizar mis datos',
     ],
     'users' => [
         'title' => 'Usuarios',
@@ -16,6 +24,10 @@ return [
         'lastname'      => 'Apellido',
         'email'         => 'Email',
         'gender'        => 'Sexo',
+        'genders'       => [
+            'male'   => 'Masculino',
+            'female' => 'Femenino',
+        ],
         'birthdate'     => 'Fecha de Nacimiento',
         'location'      => 'Ciudad',
         'avatar'        => 'Foto',
@@ -26,5 +38,9 @@ return [
         'cancel' => 'Cancelar',
         'create' => 'Crear',
         'update' => 'Actualizar',
+    ],
+    'navbar' => [
+        'profile' => 'Mi perfil',
+        'logout'  => 'Cerrar sesión',
     ],
 ];
