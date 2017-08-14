@@ -67,7 +67,7 @@ class PrincipalController extends Controller
                 'user_id'   => $user->id,
             ]);
         }
-        else if ($role == 'principal')
+        else if ($role == 'teacher')
         {
             $teacher = Teacher::create([
                 'person_id' => $person->id,
