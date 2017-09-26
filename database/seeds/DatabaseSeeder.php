@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         Eloquent::unguard();
         Schema::disableForeignKeyConstraints();
 
+        $this->call(CountriesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
         $this->call(StudentsTableSeeder::class);
         $this->call(TeachersTableSeeder::class);
         $this->call(PrincipalsTableSeeder::class);
