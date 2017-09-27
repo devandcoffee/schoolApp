@@ -15,8 +15,10 @@ class CreateTutorsTable extends Migration
     {
         Schema::create('tutors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('person_id');
+            $table->integer('person_id')->unsigned();
+            $table->foreign('person_id')->references('id')->on('persons');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
