@@ -17,6 +17,8 @@ class CreateTutorsTable extends Migration
             $table->increments('id');
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons');
+            $table->string('job')->nullable();
+            $table->string('job_phone')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

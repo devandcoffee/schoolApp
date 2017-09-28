@@ -9,7 +9,6 @@ $factory->define(App\Principal::class, function (Faker\Generator $faker) {
                 'lastname' => 'Skinner',
                 'email' => 'skinner@school.com',
                 'gender' => 'male',
-                'location' => 'Springfield',
             ])->id;
         },
         'user_id' => function() {

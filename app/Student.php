@@ -26,4 +26,13 @@ class Student extends Model
         return $this->belongsTo('App\Person');
     }
 
+    public function tutor1()
+    {
+        return $this->belongsTo('App\Tutor', 'tutor1_id');
+    }
+
+    public function tutor2()
+    {
+        return $this->belongsTo('App\Tutor', 'tutor2_id');
+    }
 }
