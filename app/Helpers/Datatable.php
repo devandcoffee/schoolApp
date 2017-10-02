@@ -21,6 +21,7 @@ class Datatable
             ],
             'edit' => true,
             'delete' => true,
+            'view' => true,
             'actions' => [],
         ];
 

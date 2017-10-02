@@ -3,6 +3,7 @@
 return [
     'students' => [
         'title'         => 'Students',
+        'single'        => 'Student',
         'list'          => 'Students List',
         'proceedings'   => 'Proceedings',
         'create'        => 'Create a new student',
@@ -35,6 +36,7 @@ return [
         'city'          => 'City',
         'avatar'        => 'Avatar',
         'mobile_phone'  => 'Mobile Phone',
+        'home_phone'    => 'Home Phone',
         'upload_avatar' => 'Upload avatar',
     ],
     'buttons' => [

@@ -3,6 +3,7 @@
 return [
     'students' => [
         'title'         => 'Alumnos',
+        'single'        => 'Alumno',
         'list'          => 'Lista de Alumnos',
         'proceedings'   => 'Actas',
         'create'        => 'Agregar nuevo alumno',
@@ -33,7 +34,8 @@ return [
         'address'       => 'Dirección',
         'country'       => 'País',
         'city'          => 'Provincia',
-        'mobile_phone'  => 'Celular',
+        'mobile_phone'  => 'Tel Celular',
+        'home_phone'  => 'Tel Casa',
         'avatar'        => 'Foto',
         'upload_avatar' => 'Subir foto',
     ],
