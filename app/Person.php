@@ -14,6 +14,8 @@ class Person extends Model
 
     protected $table = 'persons';
 
+    public $with = ['country', 'city'];
+
     protected $fillable = [
         'identity_id',
         'firstname',
@@ -49,4 +51,13 @@ class Person extends Model
         $this->attributes['birthdate'] = Carbon::createFromFormat('d-m-Y', $birthdate);
     }
 
+    public function country()
+    {
+        return $this->belongsTo('App\Country');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
 }

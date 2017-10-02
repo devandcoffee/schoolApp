@@ -137,7 +137,6 @@ class StudentController extends Controller
         $students = Student::whereHas('person', function($query) use($request) {
             $query->filter($request->filter);
         })->paginate(10);
-
         foreach ($students as $student) {
             $student->identity_id = $student->person->identity_id;
             $student->firstname = $student->person->firstname;
@@ -146,7 +145,10 @@ class StudentController extends Controller
             $student->avatar = $student->person->avatar;
             $student->gender = $student->person->gender;
             $student->birthdate = $student->person->birthdate->format('d-m-Y');
-            $student->location = $student->person->location;
+            $student->address = $student->person->address;
+            $student->country = $student->person->country->name;
+            $student->city = $student->person->city->name;
+            $student->mobile_phone = $student->person->mobile_phone;
         }
         $students->appends(['filter' => $request->filter]);
         return response()->json($students);

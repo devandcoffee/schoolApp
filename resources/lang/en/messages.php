@@ -2,11 +2,12 @@
 
 return [
     'students' => [
-        'title'       => 'Students',
-        'list'        => 'Students List',
-        'proceedings' => 'Proceedings',
-        'create'      => 'Create a new student',
-        'update'      => 'Update student data',
+        'title'         => 'Students',
+        'list'          => 'Students List',
+        'proceedings'   => 'Proceedings',
+        'create'        => 'Create a new student',
+        'update'        => 'Update student data',
+        'docket_number' => 'Docket Number',
     ],
     'principals' => [
         'title'       => 'Principals',
@@ -28,9 +29,12 @@ return [
             'male'   => 'Male',
             'female' => 'Female',
         ],
-        'birthdate'     => 'Fecha de Nacimiento',
-        'location'      => 'Ciudad',
+        'birthdate'     => 'Birthdate',
+        'address'       => 'Address',
+        'country'       => 'Country',
+        'city'          => 'City',
         'avatar'        => 'Avatar',
+        'mobile_phone'  => 'Mobile Phone',
         'upload_avatar' => 'Upload avatar',
     ],
     'buttons' => [

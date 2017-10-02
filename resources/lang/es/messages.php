@@ -2,11 +2,12 @@
 
 return [
     'students' => [
-        'title'       => 'Alumnos',
-        'list'        => 'Lista de Alumnos',
-        'proceedings' => 'Actas',
-        'create'      => 'Agregar nuevo alumno',
-        'update'      => 'Actualizar datos del Alumno',
+        'title'         => 'Alumnos',
+        'list'          => 'Lista de Alumnos',
+        'proceedings'   => 'Actas',
+        'create'        => 'Agregar nuevo alumno',
+        'update'        => 'Actualizar datos del Alumno',
+        'docket_number' => 'Número Legajo',
     ],
     'principals' => [
         'title'       => 'Directores',
@@ -29,7 +30,10 @@ return [
             'female' => 'Femenino',
         ],
         'birthdate'     => 'Fecha de Nacimiento',
-        'location'      => 'Ciudad',
+        'address'       => 'Dirección',
+        'country'       => 'País',
+        'city'          => 'Provincia',
+        'mobile_phone'  => 'Celular',
         'avatar'        => 'Foto',
         'upload_avatar' => 'Subir foto',
     ],
