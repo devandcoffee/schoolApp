@@ -10,7 +10,7 @@ class Student extends Model
 
     use SoftDeletes;
 
-    public $with = ['person'];
+    public $with = ['person', 'tutor1', 'tutor2'];
 
     protected $fillable = [
         'person_id',

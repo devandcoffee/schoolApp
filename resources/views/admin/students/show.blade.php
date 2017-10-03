@@ -32,99 +32,96 @@
                                         <h5>{{$student->docket_number}}</h5>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.identity_id'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->identity_id}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.firstname'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->firstname}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.lastname'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->lastname}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.email'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->email}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.gender'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->gender == 'male' ? __('messages.persons.genders.male') : __('messages.persons.genders.female')}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.birthdate'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->birthdate->format('d-m-Y')}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.address'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->address}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.country'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->country->name}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.city'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->city->name}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.mobile_phone'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->mobile_phone}}</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h5 class="text-info">@lang('messages.persons.home_phone'):</h5>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <h5>{{$student->person->home_phone}}</h5>
-                                    </div>
-                                </div>
+                                @component('admin.partials.person-data')
+                                    @slot('person', $student->person)
+                                @endcomponent
                             </div>
                             <div class="col-md-6">
                                 <img src="{{ $student->person->avatar }}" class="img-thumbnail" alt="">
                             </div>
                         </div>
+                        <br>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        @lang('messages.students.tutor1')
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @component('admin.partials.person-data')
+                                                    @slot('person', $student->tutor1->person)
+                                                @endcomponent
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <h5 class="text-info">@lang('messages.tutors.job'):</h5>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <h5>{{$student->tutor1->job}}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <h5 class="text-info">@lang('messages.tutors.job_phone'):</h5>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <h5>{{$student->tutor1->job_phone}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="{{ $student->tutor1->person->avatar }}" class="img-thumbnail" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        @lang('messages.students.tutor2')
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @component('admin.partials.person-data')
+                                                    @slot('person', $student->tutor2->person)
+                                                @endcomponent
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <h5 class="text-info">@lang('messages.tutors.job'):</h5>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <h5>{{$student->tutor2->job}}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <h5 class="text-info">@lang('messages.tutors.job_phone'):</h5>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <h5>{{$student->tutor2->job_phone}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="{{ $student->tutor2->person->avatar }}" class="img-thumbnail" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     @endslot
                 @endcomponent
             </div>

@@ -9,6 +9,8 @@ return [
         'create'        => 'Agregar nuevo alumno',
         'update'        => 'Actualizar datos del Alumno',
         'docket_number' => 'Número Legajo',
+        'tutor1'        => 'Tutor 1',
+        'tutor2'        => 'Tutor 2',
     ],
     'principals' => [
         'title'       => 'Directores',
@@ -38,6 +40,10 @@ return [
         'home_phone'  => 'Tel Casa',
         'avatar'        => 'Foto',
         'upload_avatar' => 'Subir foto',
+    ],
+    'tutors' => [
+        'job'       => 'Profesión',
+        'job_phone' => 'Tel Trabajo',
     ],
     'buttons' => [
         'accept' => 'Aceptar',

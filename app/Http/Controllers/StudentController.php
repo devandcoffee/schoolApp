@@ -72,6 +72,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        //dd($student);
         return view('admin.students.show')->with('student', $student);
     }
 

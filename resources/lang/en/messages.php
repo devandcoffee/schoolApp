@@ -9,6 +9,8 @@ return [
         'create'        => 'Create a new student',
         'update'        => 'Update student data',
         'docket_number' => 'Docket Number',
+        'tutor1'        => 'Tutor 1',
+        'tutor2'        => 'Tutor 2',
     ],
     'principals' => [
         'title'       => 'Principals',
@@ -38,6 +40,10 @@ return [
         'mobile_phone'  => 'Mobile Phone',
         'home_phone'    => 'Home Phone',
         'upload_avatar' => 'Upload avatar',
+    ],
+    'tutors' => [
+        'job'       => 'Job',
+        'job_phone' => 'Job Phone',
     ],
     'buttons' => [
         'accept' => 'Accept',
