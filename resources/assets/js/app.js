@@ -19,6 +19,8 @@ Vue.component('example', require('./components/Example.vue'));
 
 Vue.component('datatable', require('./components/Datatable.vue'));
 
+Vue.component('selectbasedon', require('./components/SelectBasedOn.vue'));
+
 const app = new Vue({
     el: '#app'
 });

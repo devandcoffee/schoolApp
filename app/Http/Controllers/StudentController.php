@@ -6,6 +6,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
 use App\Helpers\Datatable;
+use App\Helpers\SelectBasedOn;
 use App\Student;
 use App\Person;
 
@@ -29,7 +30,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.students.create');
+        $config = SelectBasedOn::getConfig();
+        return view('admin.students.create')->with('config', $config);;
     }
 
     /**
@@ -72,7 +74,6 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //dd($student);
         return view('admin.students.show')->with('student', $student);
     }
 

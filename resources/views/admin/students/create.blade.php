@@ -78,11 +78,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="location" class="col-sm-2 control-label">@lang('messages.persons.location')</label>
+                                <label for="address" class="col-sm-2 control-label">@lang('messages.persons.address')</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="location" id="location" placeholder="{{ __('messages.persons.location') }}">
+                                    <input type="text" class="form-control" name="address" id="address" placeholder="{{ __('messages.persons.address') }}">
                                 </div>
                             </div>
+                            <selectbasedon :config="{{ json_encode($config) }}"></selectbasedon>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-6">
                                     <a href="{{ route('students') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>

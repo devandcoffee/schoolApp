@@ -49,6 +49,7 @@ class PersonRequest extends FormRequest
                 break;
         }
 
+        $rules = [];
         return $rules;
     }
 
