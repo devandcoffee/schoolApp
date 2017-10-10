@@ -14,7 +14,8 @@
                     @endslot
                     @slot('panelBody')
                         @if ($errors->any())
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -24,66 +25,38 @@
                         @endif
                         <form class="form-horizontal" action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">@lang('messages.persons.avatar'):</label>
-                                <div class="col-sm-6">
-                                    <label>@lang('messages.persons.upload_avatar')</label>
-                                    <input type="file" name="avatar" accept="image/*">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="dni" class="col-sm-2 control-label">@lang('messages.persons.identity_id'):</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="identity_id" id="identity_id" placeholder="{{ __('messages.persons.identity_id') }}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="firstname" class="col-sm-2 control-label">@lang('messages.persons.firstname'):</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="firstname" id="firstname" placeholder="{{ __('messages.persons.firstname') }}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname" class="col-sm-2 control-label">@lang('messages.persons.lastname'):</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="{{ __('messages.persons.lastname') }}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-2 control-label">@lang('messages.persons.email'):</label>
-                                <div class="col-sm-6">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="{{ __('messages.persons.email') }}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">@lang('messages.persons.gender'):</label>
-                                <div class="col-sm-6">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="gender" value="male" checked>@lang('messages.persons.genders.male')
-                                        </label>
+                            @include('admin.partials.form-add-person', array('person' => 'person', 'config' => $config, 'errors' => $errors))
+                            <br>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            @lang('messages.tutors.create', ['num' => 1])
+                                            </a>
+                                        </h4>
                                     </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="gender" value="female">@lang('messages.persons.genders.female')
-                                        </label>
+                                    <div id="collapseOne" class="panel-collapse collapse{{ count($errors->get('tutor1.person.*')) > 0 ? ' in' : '' }}" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                        @include('admin.partials.form-add-person', array('person' => 'tutor1[person]', 'config' => $config, 'errors' => $errors))
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            @lang('messages.tutors.create', ['num' => 2])
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse{{ count($errors->get('tutor2.person.*')) > 0 ? ' in' : '' }}" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                        @include('admin.partials.form-add-person', array('person' => 'tutor2[person]', 'config' => $config, 'errors' => $errors))
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="birthdate" class="col-sm-2 control-label">@lang('messages.persons.birthdate'):</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control datepicker" name="birthdate" id="birthdate" placeholder="{{ __('messages.persons.birthdate') }}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="address" class="col-sm-2 control-label">@lang('messages.persons.address')</label>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="{{ __('messages.persons.address') }}">
-                                </div>
-                            </div>
-                            <selectbasedon :config="{{ json_encode($config) }}"></selectbasedon>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-6">
                                     <a href="{{ route('students') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 57);
+/******/ 	return __webpack_require__(__webpack_require__.s = 58);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -72,10 +72,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 // metisMenu
-__webpack_require__(44);
+__webpack_require__(45);
 
 // theme
-__webpack_require__(39);
+__webpack_require__(40);
 
 /***/ }),
 
@@ -10340,7 +10340,7 @@ return jQuery;
 
 /***/ }),
 
-/***/ 39:
+/***/ 40:
 /***/ (function(module, exports) {
 
 $(function () {
@@ -10381,7 +10381,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 44:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -10736,7 +10736,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(12);

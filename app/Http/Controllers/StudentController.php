@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Http\Requests\StudentRequest;
 use App\Helpers\Datatable;
 use App\Helpers\SelectBasedOn;
 use App\Student;
@@ -40,8 +41,10 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PersonRequest $request)
+    public function store(StudentRequest $request)
     {
+        dd($request);
+        /*
         $person = new Person;
         $person->identity_id = $request->identity_id;
         $person->firstname = $request->firstname;
@@ -63,7 +66,7 @@ class StudentController extends Controller
         ]);
 
         Session::flash('success', 'Student created');
-        return redirect()->route('students');
+        return redirect()->route('students');*/
     }
 
     /**

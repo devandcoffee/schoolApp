@@ -8,7 +8,7 @@ class SelectBasedOn
 {
     public static function getConfig()
     {
-        $countries = Country::all();
+        $countries = Country::orderBy('name')->get();
         $config = [
             'field1' => [
                 'label'   => __('messages.persons.country'),
