@@ -30,7 +30,9 @@ class PersonRequest extends FormRequest
             'avatar' => 'image',
             'gender' => 'required',
             'birthdate' => 'required|date_format:d-m-Y',
-            'location' => 'required',
+            'address'      => 'required',
+            'mobile_phone' => 'nullable|numeric',
+            'home_phone'   => 'nullable|numeric',
         ];
 
         switch($this->method())
@@ -49,7 +51,6 @@ class PersonRequest extends FormRequest
                 break;
         }
 
-        $rules = [];
         return $rules;
     }
 

@@ -25,38 +25,20 @@
                         @endif
                         <form class="form-horizontal" action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            @include('admin.partials.form-add-person', array('person' => 'person', 'config' => $config, 'errors' => $errors))
-                            <br>
-                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            @lang('messages.tutors.create', ['num' => 1])
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse{{ count($errors->get('tutor1.person.*')) > 0 ? ' in' : '' }}" role="tabpanel" aria-labelledby="headingOne">
-                                        <div class="panel-body">
-                                        @include('admin.partials.form-add-person', array('person' => 'tutor1[person]', 'config' => $config, 'errors' => $errors))
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading" role="tab" id="headingTwo">
-                                        <h4 class="panel-title">
-                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            @lang('messages.tutors.create', ['num' => 2])
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse{{ count($errors->get('tutor2.person.*')) > 0 ? ' in' : '' }}" role="tabpanel" aria-labelledby="headingTwo">
-                                        <div class="panel-body">
-                                        @include('admin.partials.form-add-person', array('person' => 'tutor2[person]', 'config' => $config, 'errors' => $errors))
-                                        </div>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@lang('messages.persons.avatar'):</label>
+                                <div class="col-sm-6">
+                                    <label>@lang('messages.persons.upload_avatar')</label>
+                                    <input type="file" name="avatar" accept="image/*">
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('docket_number') ? ' has-error' : '' }}">
+                                <label for="docket_number" class="col-sm-2 control-label">@lang('messages.students.docket_number'):</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="docket_number" id="docket_number" placeholder="{{ __('messages.students.docket_number') }}">
+                                </div>
+                            </div>
+                            @include('admin.partials.form-add-person', array('config' => $config, 'errors' => $errors))
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-6">
                                     <a href="{{ route('students') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>
