@@ -10,6 +10,7 @@ use App\Helpers\Datatable;
 use App\Helpers\SelectBasedOn;
 use App\Student;
 use App\Person;
+use App\City;
 
 class StudentController extends Controller
 {
@@ -157,5 +158,11 @@ class StudentController extends Controller
         }
         $students->appends(['filter' => $request->filter]);
         return response()->json($students);
+    }
+
+    public function city(Request $request)
+    {
+        $cities = City::where('country_id', $request->field1)->orderBy('name')->get();
+        return response()->json($cities);
     }
 }

@@ -14017,14 +14017,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
-        console.log(this.config);
+        this.getData(this.field1);
+    },
+    data: function data() {
+        return {
+            field1: 56, // Set default Argentina
+            options: []
+        };
     },
 
+    watch: {
+        field1: function field1(newValue) {
+            this.getData(newValue);
+        }
+    },
+    methods: {
+        getData: function getData(field1) {
+            var _this = this;
+
+            axios.get('/api/v1/' + this.config.field2.value, { params: { field1: field1 } }).then(function (response) {
+                _this.options = response.data;
+            });
+        }
+    },
     props: ['config']
 });
 
@@ -33623,7 +33641,7 @@ module.exports = function() {
 
 /* 
   @package NOTY - Dependency-free notification library 
-  @version version: 3.1.2 
+  @version version: 3.1.1 
   @contributors https://github.com/needim/noty/graphs/contributors 
   @documentation Examples and Documentation - http://needim.github.com/noty 
   @license Licensed under the MIT licenses: http://www.opensource.org/licenses/mit-license.php 
@@ -34154,12 +34172,13 @@ var Defaults = exports.Defaults = {
   },
   modal: false,
   visibilityControl: false
+};
 
-  /**
-   * @param {string} queueName
-   * @return {object}
-   */
-};function getQueueCounts() {
+/**
+ * @param {string} queueName
+ * @return {object}
+ */
+function getQueueCounts() {
   var queueName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'global';
 
   var count = 0;
@@ -36442,7 +36461,7 @@ var Noty = function () {
   }, {
     key: 'version',
     value: function version() {
-      return "3.1.2";
+      return "3.1.1";
     }
 
     /**
@@ -36641,10 +36660,6 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -36816,9 +36831,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.config.field1.label))]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-6"
   }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.field1),
+      expression: "field1"
+    }],
     staticClass: "form-control",
     attrs: {
-      "name": "config.field1.value"
+      "name": _vm.config.field1.value
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.field1 = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
     }
   }, _vm._l((_vm.config.field1.options), function(option) {
     return _c('option', {
@@ -36833,37 +36865,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "for": "config.field2.value"
     }
-  }, [_vm._v(_vm._s(_vm.config.field2.label))]), _vm._v(" "), _vm._m(0)])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, [_vm._v(_vm._s(_vm.config.field2.label))]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-6"
   }, [_c('select', {
     staticClass: "form-control",
     attrs: {
-      "name": "config.field2.value"
+      "name": _vm.config.field2.value
     }
-  }, [_c('option', {
-    attrs: {
-      "value": "arg"
-    }
-  }, [_vm._v("Argentina")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "bol"
-    }
-  }, [_vm._v("Bolivia")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "per"
-    }
-  }, [_vm._v("Peru")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "col"
-    }
-  }, [_vm._v("Colombia")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "ven"
-    }
-  }, [_vm._v("Venezuela")])])])
-}]}
+  }, _vm._l((_vm.options), function(option) {
+    return _c('option', {
+      domProps: {
+        "value": option.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(option.name) + "\n                ")])
+  }))])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -37310,7 +37326,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process, global) {/*!
- * Vue.js v2.4.2
+ * Vue.js v2.4.1
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -37340,11 +37356,7 @@ function isFalse (v) {
  * Check if value is primitive
  */
 function isPrimitive (value) {
-  return (
-    typeof value === 'string' ||
-    typeof value === 'number' ||
-    typeof value === 'boolean'
-  )
+  return typeof value === 'string' || typeof value === 'number'
 }
 
 /**
@@ -37567,30 +37579,14 @@ function genStaticKeys (modules) {
  * if they are plain objects, do they have the same shape?
  */
 function looseEqual (a, b) {
-  if (a === b) { return true }
   var isObjectA = isObject(a);
   var isObjectB = isObject(b);
   if (isObjectA && isObjectB) {
     try {
-      var isArrayA = Array.isArray(a);
-      var isArrayB = Array.isArray(b);
-      if (isArrayA && isArrayB) {
-        return a.length === b.length && a.every(function (e, i) {
-          return looseEqual(e, b[i])
-        })
-      } else if (!isArrayA && !isArrayB) {
-        var keysA = Object.keys(a);
-        var keysB = Object.keys(b);
-        return keysA.length === keysB.length && keysA.every(function (key) {
-          return looseEqual(a[key], b[key])
-        })
-      } else {
-        /* istanbul ignore next */
-        return false
-      }
+      return JSON.stringify(a) === JSON.stringify(b)
     } catch (e) {
-      /* istanbul ignore next */
-      return false
+      // possible circular reference
+      return a === b
     }
   } else if (!isObjectA && !isObjectB) {
     return String(a) === String(b)
@@ -38455,7 +38451,7 @@ function mergeDataOrFn (
     return function mergedDataFn () {
       return mergeData(
         typeof childVal === 'function' ? childVal.call(this) : childVal,
-        typeof parentVal === 'function' ? parentVal.call(this) : parentVal
+        parentVal.call(this)
       )
     }
   } else if (parentVal || childVal) {
@@ -38571,10 +38567,11 @@ strats.props =
 strats.methods =
 strats.inject =
 strats.computed = function (parentVal, childVal) {
+  if (!childVal) { return Object.create(parentVal || null) }
   if (!parentVal) { return childVal }
   var ret = Object.create(null);
   extend(ret, parentVal);
-  if (childVal) { extend(ret, childVal); }
+  extend(ret, childVal);
   return ret
 };
 strats.provide = mergeDataOrFn;
@@ -40520,14 +40517,17 @@ function initComputed (vm, computed) {
   for (var key in computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
-    if (process.env.NODE_ENV !== 'production' && getter == null) {
-      warn(
-        ("Getter is missing for computed property \"" + key + "\"."),
-        vm
-      );
+    if (process.env.NODE_ENV !== 'production') {
+      if (getter === undefined) {
+        warn(
+          ("No getter function has been defined for computed property \"" + key + "\"."),
+          vm
+        );
+        getter = noop;
+      }
     }
     // create internal watcher for the computed property.
-    watchers[key] = new Watcher(vm, getter || noop, noop, computedWatcherOptions);
+    watchers[key] = new Watcher(vm, getter, noop, computedWatcherOptions);
 
     // component-defined computed properties are already defined on the
     // component prototype. We only need to define computed properties defined
@@ -40557,15 +40557,6 @@ function defineComputed (target, key, userDef) {
     sharedPropertyDefinition.set = userDef.set
       ? userDef.set
       : noop;
-  }
-  if (process.env.NODE_ENV !== 'production' &&
-      sharedPropertyDefinition.set === noop) {
-    sharedPropertyDefinition.set = function () {
-      warn(
-        ("Computed property \"" + key + "\" was assigned to but it has no setter."),
-        this
-      );
-    };
   }
   Object.defineProperty(target, key, sharedPropertyDefinition);
 }
@@ -40738,7 +40729,7 @@ function resolveInject (inject, vm) {
         }
         source = source.$parent;
       }
-      if (process.env.NODE_ENV !== 'production' && !source) {
+      if (process.env.NODE_ENV !== 'production' && !hasOwn(result, key)) {
         warn(("Injection \"" + key + "\" not found"), vm);
       }
     }
@@ -40931,12 +40922,8 @@ function createComponent (
     return createFunctionalComponent(Ctor, propsData, data, context, children)
   }
 
-  // extract listeners, since these needs to be treated as
-  // child component listeners instead of DOM listeners
+  // keep listeners
   var listeners = data.on;
-  // replace with listeners with .native modifier
-  // so it gets processed during parent component patch.
-  data.on = data.nativeOn;
 
   if (isTrue(Ctor.options.abstract)) {
     // abstract components do not keep anything
@@ -41399,12 +41386,12 @@ function initRender (vm) {
     defineReactive$$1(vm, '$attrs', parentData && parentData.attrs, function () {
       !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
     }, true);
-    defineReactive$$1(vm, '$listeners', vm.$options._parentListeners, function () {
+    defineReactive$$1(vm, '$listeners', parentData && parentData.on, function () {
       !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
     }, true);
   } else {
     defineReactive$$1(vm, '$attrs', parentData && parentData.attrs, null, true);
-    defineReactive$$1(vm, '$listeners', vm.$options._parentListeners, null, true);
+    defineReactive$$1(vm, '$listeners', parentData && parentData.on, null, true);
   }
 }
 
@@ -41968,7 +41955,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.4.2';
+Vue$3.version = '2.4.1';
 
 /*  */
 
@@ -43628,7 +43615,7 @@ function genCheckboxModel (
     'if(Array.isArray($$a)){' +
       "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
           '$$i=_i($$a,$$v);' +
-      "if($$el.checked){$$i<0&&(" + value + "=$$a.concat($$v))}" +
+      "if($$c){$$i<0&&(" + value + "=$$a.concat($$v))}" +
       "else{$$i>-1&&(" + value + "=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}" +
     "}else{" + (genAssignmentCode(value, '$$c')) + "}",
     null, true
@@ -43764,11 +43751,14 @@ function remove$2 (
 }
 
 function updateDOMListeners (oldVnode, vnode) {
-  if (isUndef(oldVnode.data.on) && isUndef(vnode.data.on)) {
+  var isComponentRoot = isDef(vnode.componentOptions);
+  var oldOn = isComponentRoot ? oldVnode.data.nativeOn : oldVnode.data.on;
+  var on = isComponentRoot ? vnode.data.nativeOn : vnode.data.on;
+  if (isUndef(oldOn) && isUndef(on)) {
     return
   }
-  var on = vnode.data.on || {};
-  var oldOn = oldVnode.data.on || {};
+  on = on || {};
+  oldOn = oldOn || {};
   target$1 = vnode.elm;
   normalizeEvents(on);
   updateListeners(on, oldOn, add$1, remove$2, vnode.context);
@@ -43842,11 +43832,7 @@ function shouldUpdateValue (
 function isDirty (elm, checkVal) {
   // return true when textbox (.number and .trim) loses focus and its value is
   // not equal to the updated value
-  var notInFocus = true;
-  // #6157
-  // work around IE bug when accessing document.activeElement in an iframe
-  try { notInFocus = document.activeElement !== elm; } catch (e) {}
-  return notInFocus && elm.value !== checkVal
+  return document.activeElement !== elm && elm.value !== checkVal
 }
 
 function isInputChanged (elm, newVal) {
@@ -44626,7 +44612,6 @@ var model$1 = {
       if (isIE || isEdge) {
         setTimeout(cb, 0);
       }
-      el._vOptions = [].map.call(el.options, getValue);
     } else if (vnode.tag === 'textarea' || isTextInputType(el.type)) {
       el._vModifiers = binding.modifiers;
       if (!binding.modifiers.lazy) {
@@ -44653,9 +44638,10 @@ var model$1 = {
       // it's possible that the value is out-of-sync with the rendered options.
       // detect such cases and filter out values that no longer has a matching
       // option in the DOM.
-      var prevOptions = el._vOptions;
-      var curOptions = el._vOptions = [].map.call(el.options, getValue);
-      if (curOptions.some(function (o, i) { return !looseEqual(o, prevOptions[i]); })) {
+      var needReset = el.multiple
+        ? binding.value.some(function (v) { return hasNoMatchingOption(v, el.options); })
+        : binding.value !== binding.oldValue && hasNoMatchingOption(binding.value, el.options);
+      if (needReset) {
         trigger(el, 'change');
       }
     }
@@ -44693,6 +44679,15 @@ function setSelected (el, binding, vm) {
   if (!isMultiple) {
     el.selectedIndex = -1;
   }
+}
+
+function hasNoMatchingOption (value, options) {
+  for (var i = 0, l = options.length; i < l; i++) {
+    if (looseEqual(getValue(options[i]), value)) {
+      return false
+    }
+  }
+  return true
 }
 
 function getValue (option) {
@@ -44735,7 +44730,7 @@ var show = {
     var transition$$1 = vnode.data && vnode.data.transition;
     var originalDisplay = el.__vOriginalDisplay =
       el.style.display === 'none' ? '' : el.style.display;
-    if (value && transition$$1) {
+    if (value && transition$$1 && !isIE9) {
       vnode.data.show = true;
       enter(vnode, function () {
         el.style.display = originalDisplay;
@@ -44753,7 +44748,7 @@ var show = {
     if (value === oldValue) { return }
     vnode = locateNode(vnode);
     var transition$$1 = vnode.data && vnode.data.transition;
-    if (transition$$1) {
+    if (transition$$1 && !isIE9) {
       vnode.data.show = true;
       if (value) {
         enter(vnode, function () {
@@ -45494,6 +45489,9 @@ function parseHTML (html, options) {
     last = html;
     // Make sure we're not in a plaintext content element like script/style
     if (!lastTag || !isPlainTextElement(lastTag)) {
+      if (shouldIgnoreFirstNewline(lastTag, html)) {
+        advance(1);
+      }
       var textEnd = html.indexOf('<');
       if (textEnd === 0) {
         // Comment:
@@ -45539,9 +45537,6 @@ function parseHTML (html, options) {
         var startTagMatch = parseStartTag();
         if (startTagMatch) {
           handleStartTag(startTagMatch);
-          if (shouldIgnoreFirstNewline(lastTag, html)) {
-            advance(1);
-          }
           continue
         }
       }
@@ -46202,8 +46197,8 @@ function processAttrs (el) {
             );
           }
         }
-        if (isProp || (
-          !el.component && platformMustUseProp(el.tag, el.attrsMap.type, name)
+        if (!el.component && (
+          isProp || platformMustUseProp(el.tag, el.attrsMap.type, name)
         )) {
           addProp(el, name, value);
         } else {
@@ -46989,7 +46984,7 @@ function genText (text) {
 }
 
 function genComment (comment) {
-  return ("_e(" + (JSON.stringify(comment.text)) + ")")
+  return ("_e('" + (comment.text) + "')")
 }
 
 function genSlot (el, state) {
