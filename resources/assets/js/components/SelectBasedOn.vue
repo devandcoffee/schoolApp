@@ -10,7 +10,7 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" v-bind:class="{ 'hide-select': !isActive }">
             <label for="config.field2.value" class="col-sm-2 control-label">{{config.field2.label}}</label>
             <div class="col-sm-6">
                 <select :name="config.field2.value" class="form-control">
@@ -31,7 +31,8 @@
         data() {
             return {
                 field1: 56, // Set default Argentina
-                options: []
+                options: [],
+                isActive: true,
             }
         },
         watch: {
@@ -44,6 +45,11 @@
                 axios.get(`/api/v1/${this.config.field2.value}`, { params: { field1 } })
                     .then((response) => {
                         this.options = response.data
+                        if (this.options.length > 0) {
+                            this.isActive = true
+                        } else {
+                            this.isActive = false
+                        }
                     })
             }
         },
@@ -52,3 +58,10 @@
         ],
     }
 </script>
+
+
+<style>
+    .hide-select {
+        display: none;
+    }
+</style>
