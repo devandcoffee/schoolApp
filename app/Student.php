@@ -14,6 +14,7 @@ class Student extends Model
 
     protected $fillable = [
         'person_id',
+        'docket_number',
     ];
 
     protected $dates = ['deleted_at'];
@@ -34,5 +35,18 @@ class Student extends Model
     public function tutor2()
     {
         return $this->belongsTo('App\Tutor', 'tutor2_id');
+    }
+
+    /**
+     * Get the students's amount of tutors setted.
+     *
+     * @return string
+     */
+    public function getNumTutorsAttribute()
+    {
+        $tutors = 0;
+        if (!empty($this->tutor1)) $tutors++;
+        if (!empty($this->tutor2)) $tutors++;
+        return $tutors;
     }
 }

@@ -33,7 +33,7 @@ class StudentController extends Controller
     public function create()
     {
         $config = SelectBasedOn::getConfig();
-        return view('admin.students.create')->with('config', $config);;
+        return view('admin.students.create')->with('config', $config);
     }
 
     /**
@@ -44,7 +44,6 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        dd($request);
         /*
         $person = new Person;
         $person->identity_id = $request->identity_id;
@@ -53,7 +52,11 @@ class StudentController extends Controller
         $person->email = $request->email;
         $person->gender = $request->gender;
         $person->birthdate = $request->birthdate;
-        $person->location = $request->location;
+        $person->country_id = $request->country;
+        $person->city_id = $request->city ? $request->city : 26;
+        $person->address = $request->address;
+        $person->mobile_phone = $request->mobile_phone;
+        $person->home_phone = $request->home_phone;
 
         if($request->hasFile('avatar'))
         {
@@ -64,10 +67,11 @@ class StudentController extends Controller
 
         $student = Student::create([
             'person_id' => $person->id,
+            'docket_number' => $request->docket_number,
         ]);
 
-        Session::flash('success', 'Student created');
-        return redirect()->route('students');*/
+        Session::flash('success', 'Student created');*/
+        return redirect()->route('tutors.create', ['student' => 23]);
     }
 
     /**

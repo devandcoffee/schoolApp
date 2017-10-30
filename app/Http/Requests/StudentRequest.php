@@ -25,7 +25,7 @@ class StudentRequest extends FormRequest
     {
         $rules = [
             'docket_number' => 'required|numeric',
-            'identity_id'   => 'required|numeric',
+            'identity_id'   => 'required|numeric|unique:persons',
             'firstname'     => 'required',
             'lastname'      => 'required',
             'avatar'        => 'image',
@@ -52,6 +52,7 @@ class StudentRequest extends FormRequest
                 break;
         }
 
+        $rules = [];
         return $rules;
     }
 
