@@ -15,6 +15,8 @@ class Student extends Model
     protected $fillable = [
         'person_id',
         'docket_number',
+        'tutor1_id',
+        'tutor2_id',
     ];
 
     protected $dates = ['deleted_at'];

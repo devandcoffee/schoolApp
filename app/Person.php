@@ -24,7 +24,11 @@ class Person extends Model
         'email',
         'gender',
         'birthdate',
-        'location',
+        'country_id',
+        'city_id',
+        'address',
+        'mobile_phone',
+        'home_phone',
     ];
 
     protected $dates = ['birthdate', 'deleted_at'];

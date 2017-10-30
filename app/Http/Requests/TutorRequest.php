@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StudentRequest extends FormRequest
+class TutorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'docket_number' => 'required|numeric',
             'identity_id'   => 'required|numeric|unique:persons',
             'firstname'     => 'required',
             'lastname'      => 'required',
@@ -34,6 +33,7 @@ class StudentRequest extends FormRequest
             'address'       => 'required',
             'mobile_phone'  => 'nullable|numeric',
             'home_phone'    => 'nullable|numeric',
+            'job_phone'     => 'nullable|numeric',
         ];
 
         switch($this->method())
@@ -54,5 +54,4 @@ class StudentRequest extends FormRequest
 
         return $rules;
     }
-
 }

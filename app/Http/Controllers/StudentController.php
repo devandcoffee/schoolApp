@@ -44,34 +44,22 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        /*
-        $person = new Person;
-        $person->identity_id = $request->identity_id;
-        $person->firstname = $request->firstname;
-        $person->lastname = $request->lastname;
-        $person->email = $request->email;
-        $person->gender = $request->gender;
-        $person->birthdate = $request->birthdate;
-        $person->country_id = $request->country;
-        $person->city_id = $request->city ? $request->city : 26;
-        $person->address = $request->address;
-        $person->mobile_phone = $request->mobile_phone;
-        $person->home_phone = $request->home_phone;
-
+        $data = $request->except(['docket_number', 'city', 'country']);
         if($request->hasFile('avatar'))
         {
-            $person->avatar = $request->avatar->store('public/avatars');
+            $data['avatar'] = $request->avatar->store('public/avatars');
         }
-
-        $person->save();
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
+        $person = Person::create($data);
 
         $student = Student::create([
             'person_id' => $person->id,
             'docket_number' => $request->docket_number,
         ]);
 
-        Session::flash('success', 'Student created');*/
-        return redirect()->route('tutors.create', ['student' => 23]);
+        Session::flash('success', 'Student created');
+        return redirect()->route('tutors.create', $student->id);
     }
 
     /**

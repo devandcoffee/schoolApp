@@ -23,8 +23,9 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="form-horizontal" action="{{ route('students.store', ['student' => $student]) }}" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal" action="{{ route('tutors.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <input name="id" type="hidden" value="{{ $student }}">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">@lang('messages.persons.avatar'):</label>
                                 <div class="col-sm-6">
@@ -32,13 +33,19 @@
                                     <input type="file" name="avatar" accept="image/*">
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('docket_number') ? ' has-error' : '' }}">
-                                <label for="docket_number" class="col-sm-2 control-label">@lang('messages.students.docket_number'):</label>
+                            @include('admin.partials.form-add-person', array('config' => $config, 'errors' => $errors))
+                            <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
+                                <label for="job" class="col-sm-2 control-label">@lang('messages.tutors.job'):</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="docket_number" id="docket_number" placeholder="{{ __('messages.students.docket_number') }}">
+                                    <input type="text" class="form-control" name="job" id="job" placeholder="{{ __('messages.tutors.job') }}">
                                 </div>
                             </div>
-                            @include('admin.partials.form-add-person', array('config' => $config, 'errors' => $errors))
+                            <div class="form-group{{ $errors->has('job_phone') ? ' has-error' : '' }}">
+                                <label for="job_phone" class="col-sm-2 control-label">@lang('messages.tutors.job_phone'):</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="job_phone" id="job_phone" placeholder="{{ __('messages.tutors.job_phone') }}">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-6">
                                     <a href="{{ route('students') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>

@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Helpers\SelectBasedOn;
+use App\Http\Requests\TutorRequest;
+use App\Person;
 use App\Student;
+use App\Tutor;
+use Session;
 
 class TutorController extends Controller
 {
@@ -32,6 +36,10 @@ class TutorController extends Controller
         elseif ($student->num_tutors == 1) {
             $tutor = 2;
         }
+        else {
+            return redirect()->route('students');
+        }
+
         return view('admin.tutors.create', [
             'config' => $config,
             'tutor' => $tutor,
@@ -45,9 +53,45 @@ class TutorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TutorRequest $request)
     {
-        //
+        $student = Student::find($request->id);
+
+        $num_tutor = 0;
+        if ($student->num_tutors == 0) {
+            $num_tutor = 1;
+        }
+        elseif ($student->num_tutors == 1) {
+            $num_tutor = 2;
+        }
+
+        if ($num_tutor != 0) {
+            $data = $request->except(['id', 'job', 'job_phone', 'city', 'country']);
+            $data['city_id'] = $request->city ? $request->city : 26;
+            $data['country_id'] = $request->country ? $request->country : 56;
+            if($request->hasFile('avatar'))
+            {
+                $data['avatar'] = $request->avatar->store('public/avatars');
+            }
+            $person = Person::create($data);
+
+            $data = $request->only(['job', 'job_phone']);
+            $data['person_id'] = $person->id;
+            $tutor = Tutor::create($data);
+
+            $student->update([
+                "tutor{$num_tutor}_id" => $tutor->id,
+            ]);
+
+            Session::flash('success', "Tutor {$num_tutor} created");
+        }
+
+        if ($num_tutor == 1) {
+            return redirect()->route('tutors.create', ['student' => $student->id]);
+        }
+        else {
+            return redirect()->route('students');
+        }
     }
 
     /**
