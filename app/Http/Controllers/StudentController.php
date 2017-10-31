@@ -49,6 +49,9 @@ class StudentController extends Controller
         {
             $data['avatar'] = $request->avatar->store('public/avatars');
         }
+        else {
+            $data['avatar'] = $data['gender'] == 'male' ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png';
+        }
         $data['city_id'] = $request->city ? $request->city : 26;
         $data['country_id'] = $request->country ? $request->country : 56;
         $person = Person::create($data);

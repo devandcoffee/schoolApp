@@ -73,6 +73,9 @@ class TutorController extends Controller
             {
                 $data['avatar'] = $request->avatar->store('public/avatars');
             }
+            else {
+                $data['avatar'] = $data['gender'] == 'male' ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png';
+            }
             $person = Person::create($data);
 
             $data = $request->only(['job', 'job_phone']);
