@@ -35,7 +35,7 @@
                             <div class="form-group{{ $errors->has('docket_number') ? ' has-error' : '' }}">
                                 <label for="docket_number" class="col-sm-2 control-label">@lang('messages.students.docket_number'):</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="docket_number" id="docket_number" placeholder="{{ __('messages.students.docket_number') }}">
+                                    <input type="text" class="form-control" name="docket_number" id="docket_number" placeholder="{{ __('messages.students.docket_number') }}" value="{{ old('docket_number') }}">
                                 </div>
                             </div>
                             @include('admin.partials.form-add-person', array('config' => $config, 'errors' => $errors))

@@ -37,13 +37,13 @@
                             <div class="form-group{{ $errors->has('job') ? ' has-error' : '' }}">
                                 <label for="job" class="col-sm-2 control-label">@lang('messages.tutors.job'):</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="job" id="job" placeholder="{{ __('messages.tutors.job') }}">
+                                    <input type="text" class="form-control" name="job" id="job" placeholder="{{ __('messages.tutors.job') }}" value="{{ old('job') }}">
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('job_phone') ? ' has-error' : '' }}">
                                 <label for="job_phone" class="col-sm-2 control-label">@lang('messages.tutors.job_phone'):</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="job_phone" id="job_phone" placeholder="{{ __('messages.tutors.job_phone') }}">
+                                    <input type="text" class="form-control" name="job_phone" id="job_phone" placeholder="{{ __('messages.tutors.job_phone') }}" value="{{ old('job_phone') }}">
                                 </div>
                             </div>
                             <div class="form-group">
