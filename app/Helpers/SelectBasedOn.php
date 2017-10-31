@@ -12,12 +12,14 @@ class SelectBasedOn
         $config = [
             'field1' => [
                 'label'   => __('messages.persons.country'),
-                'value'   => 'country',
-                'options' => $countries
+                'name'    => 'country',
+                'options' => $countries,
+                'value'   => 56,// Argentina default value
             ],
             'field2' => [
                 'label' => __('messages.persons.city'),
-                'value' => 'city'
+                'name'  => 'city',
+                'value' => 5,// Salta default value
             ],
         ];
 

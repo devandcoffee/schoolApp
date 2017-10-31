@@ -84,7 +84,10 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('admin.students.edit')->with('student', $student);
+        $config = SelectBasedOn::getConfig();
+        $config['field1']['value'] = $student->person->country_id;
+        $config['field2']['value'] = $student->person->city_id;
+        return view('admin.students.edit', ['student' => $student, 'config' => $config]);
     }
 
     /**
