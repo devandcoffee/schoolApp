@@ -97,24 +97,21 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Student $student, PersonRequest $request)
+    public function update(Student $student, StudentRequest $request)
     {
-        $student->person()->update([
-            'identity_id' => $request->identity_id,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'birthdate' => $request->birthdate,
-            'location' => $request->location,
-        ]);
+        $data = $request->except(['docket_number', 'city', 'country']);
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
 
         if($request->hasFile('avatar'))
         {
-            $student->person()->update([
-                'avatar' => $request->avatar->store('public/avatars'),
-            ]);
+            $data['avatar'] = $request->avatar->store('public/avatars');
         }
+
+        $student->person()->update($data);
+
+        $data = $request->only(['docket_number']);
+        $student->update($data);
 
         Session::flash('success', 'Student updated');
         return redirect()->route('students');

@@ -31,9 +31,9 @@ class TutorRequest extends FormRequest
             'gender'        => 'required',
             'birthdate'     => 'required|date_format:d-m-Y',
             'address'       => 'required',
-            'mobile_phone'  => 'nullable|numeric',
-            'home_phone'    => 'nullable|numeric',
-            'job_phone'     => 'nullable|numeric',
+            'mobile_phone'  => 'nullable',
+            'home_phone'    => 'nullable',
+            'job_phone'     => 'nullable',
         ];
 
         switch($this->method())

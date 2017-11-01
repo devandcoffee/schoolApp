@@ -35,6 +35,12 @@
                                     <input type="file" name="avatar" accept="image/*">
                                 </div>
                             </div>
+                            <div class="form-group{{ $errors->has('docket_number') ? ' has-error' : '' }}">
+                                <label for="dni" class="col-sm-2 control-label">@lang('messages.students.docket_number'):</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="docket_number" id="docket_number" placeholder="{{ __('messages.students.docket_number') }}" value="{{ $student->docket_number }}">
+                                </div>
+                            </div>
                             @include('admin.partials.form-edit-person', array('config' => $config, 'errors' => $errors, 'person' => $student->person))
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-6">
