@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
 use App\Http\Requests\StudentRequest;
@@ -11,6 +10,7 @@ use App\Helpers\SelectBasedOn;
 use App\Student;
 use App\Person;
 use App\City;
+use Session;
 
 class StudentController extends Controller
 {
@@ -61,7 +61,7 @@ class StudentController extends Controller
             'docket_number' => $request->docket_number,
         ]);
 
-        Session::flash('success', 'Student created');
+        Session::flash('success', __('messages.flash.student_created'));
         return redirect()->route('tutors.create', $student->id);
     }
 
@@ -113,7 +113,7 @@ class StudentController extends Controller
         $data = $request->only(['docket_number']);
         $student->update($data);
 
-        Session::flash('success', 'Student updated');
+        Session::flash('success', __('messages.flash.student_updated'));
         return redirect()->route('students');
     }
 

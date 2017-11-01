@@ -56,4 +56,9 @@ return [
         'profile' => 'User Profile',
         'logout'  => 'Logout',
     ],
+    'flash' => [
+        'student_created' => 'Student Created',
+        'student_updated' => 'Student Updated',
+        'tutor_created'   => 'Tutor :num created',
+    ],
 ];

@@ -86,7 +86,7 @@ class TutorController extends Controller
                 "tutor{$num_tutor}_id" => $tutor->id,
             ]);
 
-            Session::flash('success', "Tutor {$num_tutor} created");
+            Session::flash('success', __('messages.flash.tutor_created', ['num' => $num_tutor]));
         }
 
         if ($num_tutor == 1) {

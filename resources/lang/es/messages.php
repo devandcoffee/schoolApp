@@ -56,4 +56,9 @@ return [
         'profile' => 'Mi perfil',
         'logout'  => 'Cerrar sesión',
     ],
+    'flash' => [
+        'student_created' => 'Nuevo alumno agregado!',
+        'student_updated' => 'Datos de alumno actualizados!',
+        'tutor_created'   => 'Tutor :num agregado!',
+    ],
 ];

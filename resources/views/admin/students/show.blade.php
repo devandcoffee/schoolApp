@@ -32,15 +32,14 @@
                                         <h5>{{$student->docket_number}}</h5>
                                     </div>
                                 </div>
-                                @component('admin.partials.person-data')
-                                    @slot('person', $student->person)
-                                @endcomponent
+                                @include('admin.partials.person-data', array('person' => $student->person))
                             </div>
                             <div class="col-md-6">
                                 <img src="{{ $student->person->avatar }}" class="img-thumbnail" alt="">
                             </div>
                         </div>
                         <br>
+                        @if (!empty($student->tutor1))
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
@@ -54,9 +53,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                @component('admin.partials.person-data')
-                                                    @slot('person', $student->tutor1->person)
-                                                @endcomponent
+                                                @include('admin.partials.person-data', array('person' => $student->tutor1->person))
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <h5 class="text-info">@lang('messages.tutors.job'):</h5>
@@ -93,9 +90,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                @component('admin.partials.person-data')
-                                                    @slot('person', $student->tutor2->person)
-                                                @endcomponent
+                                                @include('admin.partials.person-data', array('person' => $student->tutor2->person))
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <h5 class="text-info">@lang('messages.tutors.job'):</h5>
@@ -121,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        @endif
                     @endslot
                 @endcomponent
             </div>
