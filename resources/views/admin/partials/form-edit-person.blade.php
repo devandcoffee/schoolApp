@@ -29,12 +29,12 @@
         <div class="col-sm-6">
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" value="male" {{$student->person->gender == 'male' ? 'checked' : ''}}>@lang('messages.persons.genders.male')
+                    <input type="radio" name="gender" value="male" {{$person->gender == 'male' ? 'checked' : ''}}>@lang('messages.persons.genders.male')
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="gender" value="female" {{$student->person->gender == 'female' ? 'checked' : ''}}>@lang('messages.persons.genders.female')
+                    <input type="radio" name="gender" value="female" {{$person->gender == 'female' ? 'checked' : ''}}>@lang('messages.persons.genders.female')
                 </label>
             </div>
         </div>

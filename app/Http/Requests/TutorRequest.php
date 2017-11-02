@@ -23,29 +23,41 @@ class TutorRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'identity_id'   => 'required|numeric|unique:persons',
-            'firstname'     => 'required',
-            'lastname'      => 'required',
-            'avatar'        => 'image',
-            'gender'        => 'required',
-            'birthdate'     => 'required|date_format:d-m-Y',
-            'address'       => 'required',
-            'mobile_phone'  => 'nullable',
-            'home_phone'    => 'nullable',
-            'job_phone'     => 'nullable',
-        ];
 
         switch($this->method())
         {
             case 'POST':
             {
-                $rules['email'] = 'required|email|unique:persons';
+                $rules = [
+                    'identity_id'   => 'required|numeric|unique:persons',
+                    'firstname'     => 'required',
+                    'lastname'      => 'required',
+                    'email'         => 'required|email|unique:persons',
+                    'avatar'        => 'image',
+                    'gender'        => 'required',
+                    'birthdate'     => 'required|date_format:d-m-Y',
+                    'address'       => 'required',
+                    'mobile_phone'  => 'nullable',
+                    'home_phone'    => 'nullable',
+                    'job_phone'     => 'nullable',
+                ];
                 break;
             }
             case 'PUT':
             {
-                $rules['email'] = 'required|email';
+                $rules = [
+                    'identity_id'   => 'required|numeric',
+                    'firstname'     => 'required',
+                    'lastname'      => 'required',
+                    'email'         => 'required|email',
+                    'avatar'        => 'image',
+                    'gender'        => 'required',
+                    'birthdate'     => 'required|date_format:d-m-Y',
+                    'address'       => 'required',
+                    'mobile_phone'  => 'nullable',
+                    'home_phone'    => 'nullable',
+                    'job_phone'     => 'nullable',
+                ];
                 break;
             }
             default:

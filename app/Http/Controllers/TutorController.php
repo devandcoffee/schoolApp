@@ -114,9 +114,23 @@ class TutorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student, $tutor)
     {
-        //
+        if ($tutor == 1) {
+            $tutor = $student->tutor1;
+        }
+        else {
+            $tutor = $student->tutor2;
+        }
+
+        $config = SelectBasedOn::getConfig();
+        $config['field1']['value'] = $tutor->person->country_id;
+        $config['field2']['value'] = $tutor->person->city_id;
+        return view('admin.tutors.edit', [
+            'config' => $config,
+            'tutor' => $tutor,
+            'student' => $student->id,
+        ]);
     }
 
     /**
@@ -126,9 +140,23 @@ class TutorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TutorRequest $request, Tutor $tutor)
     {
-        //
+        $data = $request->except(['job', 'job_phone', 'city', 'country']);
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
+        if($request->hasFile('avatar'))
+        {
+            $data['avatar'] = $request->avatar->store('public/avatars');
+        }
+
+        $tutor->person()->update($data);
+
+        $data = $request->only(['job', 'job_phone']);
+        $tutor->update($data);
+
+        Session::flash('success', __('messages.flash.tutor_updated'));
+        return redirect()->route('students');
     }
 
     /**

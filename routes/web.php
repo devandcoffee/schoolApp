@@ -35,6 +35,11 @@ Route::group(['middleware' => 'auth'], function(){
         'uses' => 'TutorController@store',
         'as' => 'tutors.store',
     ]);
+
+    Route::put('tutors/{tutor}', [
+        'uses' => 'TutorController@update',
+        'as' => 'tutors.update'
+    ]);
 });
 
 Auth::routes();

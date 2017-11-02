@@ -42,9 +42,11 @@ return [
         'upload_avatar' => 'Subir foto',
     ],
     'tutors' => [
+        'title'       => 'Tutores',
         'job'         => 'Profesión',
         'job_phone'   => 'Tel Trabajo',
         'create'      => 'Agregar datos del tutor :num',
+        'update'      => 'Actualizar datos del tutor',
     ],
     'buttons' => [
         'accept'     => 'Aceptar',
@@ -62,5 +64,6 @@ return [
         'student_created' => 'Nuevo alumno agregado!',
         'student_updated' => 'Datos de alumno actualizados!',
         'tutor_created'   => 'Tutor :num agregado!',
+        'tutor_updated'   => 'Datos del tutor actualizados!',
     ],
 ];

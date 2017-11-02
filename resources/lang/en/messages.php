@@ -42,9 +42,11 @@ return [
         'upload_avatar' => 'Upload avatar',
     ],
     'tutors' => [
+        'title'       => 'Tutors',
         'job'         => 'Job',
         'job_phone'   => 'Job Phone',
         'create'      => 'Add tutor :num data',
+        'update'      => 'Update tutor data',
     ],
     'buttons' => [
         'accept'     => 'Accept',
@@ -62,5 +64,6 @@ return [
         'student_created' => 'Student Created',
         'student_updated' => 'Student Updated',
         'tutor_created'   => 'Tutor :num created',
+        'tutor_updated'   => 'Tutor updated',
     ],
 ];
