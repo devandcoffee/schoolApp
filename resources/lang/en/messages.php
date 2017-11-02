@@ -61,9 +61,13 @@ return [
         'logout'  => 'Logout',
     ],
     'flash' => [
-        'student_created' => 'Student Created',
-        'student_updated' => 'Student Updated',
-        'tutor_created'   => 'Tutor :num created',
-        'tutor_updated'   => 'Tutor updated',
+        'student_created'   => 'Student Created',
+        'student_updated'   => 'Student Updated',
+        'tutor_created'     => 'Tutor :num Created',
+        'tutor_updated'     => 'Tutor Updated',
+        'principal_created' => 'Principal Created',
+        'principal_updated' => 'Principal Updated',
+        'teacher_created'   => 'Teacher Created',
+        'teacher_updated'   => 'Teacher Updated',
     ],
 ];

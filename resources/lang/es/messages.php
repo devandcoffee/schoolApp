@@ -61,9 +61,13 @@ return [
         'logout'  => 'Cerrar sesión',
     ],
     'flash' => [
-        'student_created' => 'Nuevo alumno agregado!',
-        'student_updated' => 'Datos de alumno actualizados!',
-        'tutor_created'   => 'Tutor :num agregado!',
-        'tutor_updated'   => 'Datos del tutor actualizados!',
+        'student_created'   => 'Nuevo alumno agregado!',
+        'student_updated'   => 'Datos de alumno actualizados!',
+        'tutor_created'     => 'Tutor :num agregado!',
+        'tutor_updated'     => 'Datos del tutor actualizados!',
+        'principal_created' => 'Nuevo director agregado!',
+        'principal_updated' => 'Tus datos se han actualizado!',
+        'teacher_created'   => 'Nuevo profesor agregado!',
+        'teacher_updated'   => 'Tus datos se han actualizado!',
     ],
 ];
