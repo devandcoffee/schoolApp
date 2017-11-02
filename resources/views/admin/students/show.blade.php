@@ -78,6 +78,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @if(!empty($student->tutor2))
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingTwo">
                                     <h4 class="panel-title">
@@ -115,6 +116,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
+                        </div>
+                        @else
+                        <div>
+                            <h4>No hay tutores asignados...</h4>
                         </div>
                         @endif
                     @endslot

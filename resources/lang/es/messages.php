@@ -47,10 +47,12 @@ return [
         'create'      => 'Agregar datos del tutor :num',
     ],
     'buttons' => [
-        'accept' => 'Aceptar',
-        'cancel' => 'Cancelar',
-        'create' => 'Crear',
-        'update' => 'Actualizar',
+        'accept'     => 'Aceptar',
+        'cancel'     => 'Cancelar',
+        'create'     => 'Crear',
+        'update'     => 'Actualizar',
+        'add_tutors' => 'Agregar tutores',
+        'edit_tutor' => 'Editar tutor :num',
     ],
     'navbar' => [
         'profile' => 'Mi perfil',

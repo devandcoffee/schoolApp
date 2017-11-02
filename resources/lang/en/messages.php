@@ -47,10 +47,12 @@ return [
         'create'      => 'Add tutor :num data',
     ],
     'buttons' => [
-        'accept' => 'Accept',
-        'cancel' => 'Cancel',
-        'create' => 'Create',
-        'Update' => 'Update',
+        'accept'     => 'Accept',
+        'cancel'     => 'Cancel',
+        'create'     => 'Create',
+        'update'     => 'update',
+        'add_tutors' => 'Add tutors',
+        'edit_tutor' => 'Edit tutor :num',
     ],
     'navbar' => [
         'profile' => 'User Profile',

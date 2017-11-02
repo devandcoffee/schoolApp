@@ -11,6 +11,21 @@
                 @component('admin.widgets.panel')
                     @slot('panelTitle')
                         @lang('messages.students.update')
+                        @if(empty($student->tutor1))
+                        <a href="{{ route('tutors.create', ['student' => $student->id]) }}" class="btn btn-primary">
+                            @lang('messages.buttons.add_tutors')
+                        </a>
+                        @endif
+                        @if(!empty($student->tutor1))
+                        <a href="{{ route('tutors.edit', ['student' => $student->id, 'tutor' => 1]) }}" class="btn btn-primary">
+                            @lang('messages.buttons.edit_tutor', ['num' => 1])
+                        </a>
+                        @endif
+                        @if(!empty($student->tutor2))
+                        <a href="{{ route('tutors.edit', ['student' => $student->id, 'tutor' => 2]) }}" class="btn btn-primary">
+                            @lang('messages.buttons.edit_tutor', ['num' => 2])
+                        </a>
+                        @endif
                     @endslot
                     @slot('panelBody')
                         @if ($errors->any())

@@ -21,9 +21,14 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('principals', 'PrincipalController');
 
-    Route::get('tutors/create/{student}', [
+    Route::get('students/{student}/tutors/create', [
         'uses' => 'TutorController@create',
         'as' => 'tutors.create',
+    ]);
+
+    Route::get('students/{student}/tutors/{tutor}/edit', [
+        'uses' => 'TutorController@edit',
+        'as'   => 'tutors.edit',
     ]);
 
     Route::post('tutors/create', [
