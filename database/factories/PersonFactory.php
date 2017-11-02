@@ -7,10 +7,14 @@ $factory->define(App\Person::class, function (Faker\Generator $faker) {
         'identity_id' => $faker->randomNumber(6),
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
-        'avatar' => $genderBool ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png',
         'email' => $faker->unique()->safeEmail,
         'gender' => $genderBool ? 'male' : 'female',
         'birthdate' => $faker->date('d-m-Y', 'now'),
-        'location' => $faker->city,
+        'country_id' => 56,
+        'city_id' => $faker->numberBetween(1, 25),
+        'address' => $faker->address,
+        'mobile_phone' => $faker->tollFreePhoneNumber,
+        'home_phone' => $faker->tollFreePhoneNumber,
+        'avatar' => $genderBool ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png',
     ];
 });

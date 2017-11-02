@@ -24,6 +24,10 @@ Route::group(
             'uses' => 'StudentController@students',
         ]);
 
+        Route::get('/city', [
+            'uses' => 'StudentController@city',
+        ]);
+
         Route::get('/principals', [
             'uses' => 'PrincipalController@principals',
         ]);

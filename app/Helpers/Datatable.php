@@ -8,16 +8,17 @@ class Datatable
     {
         $config = [
             'columns' => [
-                'identity_id' => __('messages.persons.identity_id'),
-                'firstname'   => __('messages.persons.firstname'),
-                'lastname'    => __('messages.persons.lastname'),
-                'email'       => __('messages.persons.email'),
-                'gender'      => __('messages.persons.gender'),
-                'birthdate'   => __('messages.persons.birthdate'),
-                'location'    => __('messages.persons.location'),
+                'identity_id'   => __('messages.persons.identity_id'),
+                'docket_number' => __('messages.students.docket_number'),
+                'firstname'     => __('messages.persons.firstname'),
+                'lastname'      => __('messages.persons.lastname'),
+                'email'         => __('messages.persons.email'),
+                'birthdate'     => __('messages.persons.birthdate'),
+                'mobile_phone'  => __('messages.persons.mobile_phone'),
             ],
             'edit' => true,
             'delete' => true,
+            'view' => true,
             'actions' => [],
         ];
 

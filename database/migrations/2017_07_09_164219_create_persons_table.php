@@ -15,14 +15,20 @@ class CreatePersonsTable extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('identity_id', 20);
+            $table->string('identity_id', 20)->unique();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('avatar')->default('public/defaults/avatars/male.png');
             $table->string('email')->unique();
             $table->enum('gender', ['male', 'female']);
             $table->date('birthdate')->nullable();
-            $table->string('location')->nullable();
+            $table->integer('country_id')->nullable()->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->integer('city_id')->nullable()->unsigned();
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->string('address')->nullable();
+            $table->string('mobile_phone')->nullable();
+            $table->string('home_phone')->nullable();
+            $table->string('avatar')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

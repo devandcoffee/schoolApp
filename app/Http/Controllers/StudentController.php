@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Http\Requests\StudentRequest;
 use App\Helpers\Datatable;
+use App\Helpers\SelectBasedOn;
 use App\Student;
 use App\Person;
+use App\City;
+use Session;
 
 class StudentController extends Controller
 {
@@ -29,7 +32,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.students.create');
+        $config = SelectBasedOn::getConfig();
+        return view('admin.students.create')->with('config', $config);
     }
 
     /**
@@ -38,30 +42,27 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PersonRequest $request)
+    public function store(StudentRequest $request)
     {
-        $person = new Person;
-        $person->identity_id = $request->identity_id;
-        $person->firstname = $request->firstname;
-        $person->lastname = $request->lastname;
-        $person->email = $request->email;
-        $person->gender = $request->gender;
-        $person->birthdate = $request->birthdate;
-        $person->location = $request->location;
-
+        $data = $request->except(['docket_number', 'city', 'country']);
         if($request->hasFile('avatar'))
         {
-            $person->avatar = $request->avatar->store('public/avatars');
+            $data['avatar'] = $request->avatar->store('public/avatars');
         }
-
-        $person->save();
+        else {
+            $data['avatar'] = $data['gender'] == 'male' ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png';
+        }
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
+        $person = Person::create($data);
 
         $student = Student::create([
             'person_id' => $person->id,
+            'docket_number' => $request->docket_number,
         ]);
 
-        Session::flash('success', 'Student created');
-        return redirect()->route('students');
+        Session::flash('success', __('messages.flash.student_created'));
+        return redirect()->route('tutors.create', $student->id);
     }
 
     /**
@@ -70,9 +71,9 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Student $student)
     {
-        //
+        return view('admin.students.show')->with('student', $student);
     }
 
     /**
@@ -83,7 +84,10 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('admin.students.edit')->with('student', $student);
+        $config = SelectBasedOn::getConfig();
+        $config['field1']['value'] = $student->person->country_id;
+        $config['field2']['value'] = $student->person->city_id;
+        return view('admin.students.edit', ['student' => $student, 'config' => $config]);
     }
 
     /**
@@ -93,26 +97,23 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Student $student, PersonRequest $request)
+    public function update(Student $student, StudentRequest $request)
     {
-        $student->person()->update([
-            'identity_id' => $request->identity_id,
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'birthdate' => $request->birthdate,
-            'location' => $request->location,
-        ]);
+        $data = $request->except(['docket_number', 'city', 'country']);
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
 
         if($request->hasFile('avatar'))
         {
-            $student->person()->update([
-                'avatar' => $request->avatar->store('public/avatars'),
-            ]);
+            $data['avatar'] = $request->avatar->store('public/avatars');
         }
 
-        Session::flash('success', 'Student updated');
+        $student->person()->update($data);
+
+        $data = $request->only(['docket_number']);
+        $student->update($data);
+
+        Session::flash('success', __('messages.flash.student_updated'));
         return redirect()->route('students');
     }
 
@@ -137,7 +138,6 @@ class StudentController extends Controller
         $students = Student::whereHas('person', function($query) use($request) {
             $query->filter($request->filter);
         })->paginate(10);
-
         foreach ($students as $student) {
             $student->identity_id = $student->person->identity_id;
             $student->firstname = $student->person->firstname;
@@ -146,9 +146,18 @@ class StudentController extends Controller
             $student->avatar = $student->person->avatar;
             $student->gender = $student->person->gender;
             $student->birthdate = $student->person->birthdate->format('d-m-Y');
-            $student->location = $student->person->location;
+            $student->address = $student->person->address;
+            $student->country = $student->person->country->name;
+            $student->city = $student->person->city->name;
+            $student->mobile_phone = $student->person->mobile_phone;
         }
         $students->appends(['filter' => $request->filter]);
         return response()->json($students);
+    }
+
+    public function city(Request $request)
+    {
+        $cities = City::where('country_id', $request->field1)->orderBy('name')->get();
+        return response()->json($cities);
     }
 }

@@ -17,6 +17,11 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons');
+            $table->integer('tutor1_id')->unsigned()->nullable();
+            $table->foreign('tutor1_id')->references('id')->on('tutors');
+            $table->integer('tutor2_id')->unsigned()->nullable();
+            $table->foreign('tutor2_id')->references('id')->on('tutors');
+            $table->integer('docket_number')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

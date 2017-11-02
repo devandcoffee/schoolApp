@@ -21,62 +21,25 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('principals', 'PrincipalController');
 
-});
+    Route::get('students/{student}/tutors/create', [
+        'uses' => 'TutorController@create',
+        'as' => 'tutors.create',
+    ]);
 
-Route::get('/charts', function () {
-    return View::make('admin.charts');
-});
+    Route::get('students/{student}/tutors/{tutor}/edit', [
+        'uses' => 'TutorController@edit',
+        'as'   => 'tutors.edit',
+    ]);
 
-Route::get('/tables', function () {
-    return View::make('admin.table');
-});
+    Route::post('tutors/create', [
+        'uses' => 'TutorController@store',
+        'as' => 'tutors.store',
+    ]);
 
-Route::get('/forms', function () {
-    return View::make('admin.form');
-});
-
-Route::get('/grid', function () {
-    return View::make('admin.grid');
-});
-
-Route::get('/buttons', function () {
-    return View::make('admin.buttons');
-});
-
-Route::get('/icons', function () {
-    return View::make('admin.icons');
-});
-
-Route::get('/panels', function () {
-    return View::make('admin.panel');
-});
-
-Route::get('/typography', function () {
-    return View::make('admin.typography');
-});
-
-Route::get('/notifications', function () {
-    return View::make('admin.notifications');
-});
-
-Route::get('/blank', function () {
-    return View::make('admin.blank');
-});
-
-Route::get('/documentation', function () {
-    return View::make('admin.documentation');
-});
-
-Route::get('/stats', function() {
-   return View::make('admin.stats');
-});
-
-Route::get('/progressbars', function() {
-    return View::make('admin.progressbars');
-});
-
-Route::get('/collapse', function() {
-    return View::make('admin.collapse');
+    Route::put('tutors/{tutor}', [
+        'uses' => 'TutorController@update',
+        'as' => 'tutors.update'
+    ]);
 });
 
 Auth::routes();

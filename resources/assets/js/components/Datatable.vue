@@ -12,6 +12,7 @@
                     <th v-for="(value, key) in config.columns">
                         {{ value | capitalize }}
                     </th>
+                    <th v-if="config.view">View</th>
                     <th v-if="config.edit">Edit</th>
                     <th v-if="config.delete">Delete</th>
                 </tr>
@@ -20,6 +21,9 @@
                 <tr v-for="elem in filteredData">
                     <td v-for="(value, key) in config.columns">
                         {{elem[key]}}
+                    </td>
+                    <td v-if="config.view">
+                        <a :href="`/${dataType}/${elem['id']}`"><span class="fa-eye"></span></a>
                     </td>
                     <td v-if="config.edit">
                         <a :href="`/${dataType}/${elem['id']}/edit`"><span class="fa-pencil"></span></a>
