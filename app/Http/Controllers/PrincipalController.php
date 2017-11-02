@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\PersonRequest;
+use App\Helpers\SelectBasedOn;
 use App\Helpers\Datatable;
 use App\Principal;
 use App\Teacher;
 use App\Person;
 use App\User;
+use Session;
 
 class PrincipalController extends Controller
 {
@@ -31,26 +32,23 @@ class PrincipalController extends Controller
      */
     public function create()
     {
-        return view('admin.principals.create');
+        $config = SelectBasedOn::getConfig();
+        return view('admin.principals.create', ['config' => $config]);
     }
 
     public function store(PersonRequest $request)
     {
-        $person = new Person;
-        $person->identity_id = $request->identity_id;
-        $person->firstname = $request->firstname;
-        $person->lastname = $request->lastname;
-        $person->email = $request->email;
-        $person->gender = $request->gender;
-        $person->birthdate = $request->birthdate;
-        $person->location = $request->location;
-
+        $data = $request->except(['role', 'city', 'country']);
         if($request->hasFile('avatar'))
         {
-            $person->avatar = $request->avatar->store('public/avatars');
+            $data['avatar'] = $request->avatar->store('public/avatars');
         }
-
-        $person->save();
+        else {
+            $data['avatar'] = $data['gender'] == 'male' ? 'public/defaults/avatars/male.png' : 'public/defaults/avatars/female.png';
+        }
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
+        $person = Person::create($data);
 
         // TODO: generar passwords y mandar mail con los datos de la cuenta.
         $user = User::create([
@@ -66,6 +64,7 @@ class PrincipalController extends Controller
                 'person_id' => $person->id,
                 'user_id'   => $user->id,
             ]);
+            Session::flash('success', __('messages.flash.principal_created'));
         }
         else if ($role == 'teacher')
         {
@@ -73,9 +72,9 @@ class PrincipalController extends Controller
                 'person_id' => $person->id,
                 'user_id'   => $user->id,
             ]);
+            Session::flash('success', __('messages.flash.teacher_created'));
         }
 
-        Session::flash('success', 'Principal created');
         return redirect()->route('principals.index');
     }
 
@@ -98,7 +97,10 @@ class PrincipalController extends Controller
      */
     public function edit(Principal $principal)
     {
-        return view('admin.principals.edit')->with('principal', $principal);
+        $config = SelectBasedOn::getConfig();
+        $config['field1']['value'] = $principal->person->country_id;
+        $config['field2']['value'] = $principal->person->city_id;
+        return view('admin.principals.edit', ['principal' => $principal, 'config' => $config]);
     }
 
     /**
@@ -108,9 +110,19 @@ class PrincipalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PersonRequest $request, Principal $principal)
     {
-        //
+        $data = $request->except(['city', 'country']);
+        if($request->hasFile('avatar'))
+        {
+            $data['avatar'] = $request->avatar->store('public/avatars');
+        }
+        $data['city_id'] = $request->city ? $request->city : 26;
+        $data['country_id'] = $request->country ? $request->country : 56;
+
+        $principal->person()->update($data);
+        Session::flash('success', __('messages.flash.principal_updated'));
+        return redirect()->route('students');
     }
 
     /**
@@ -139,7 +151,10 @@ class PrincipalController extends Controller
             $principal->avatar = $principal->person->avatar;
             $principal->gender = $principal->person->gender;
             $principal->birthdate = $principal->person->birthdate->format('d-m-Y');
-            $principal->location = $principal->person->location;
+            $principal->address = $principal->person->address;
+            $principal->country = $principal->person->country->name;
+            $principal->city = $principal->person->city->name;
+            $principal->mobile_phone = $principal->person->mobile_phone;
         }
         $principals->appends(['filter' => $request->filter]);
         return response()->json($principals);
