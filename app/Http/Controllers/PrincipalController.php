@@ -84,9 +84,9 @@ class PrincipalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Principal $principal)
     {
-        //
+        return view('admin.principals.show', ['principal' => $principal]);
     }
 
     /**

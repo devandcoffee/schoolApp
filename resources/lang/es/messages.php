@@ -13,10 +13,11 @@ return [
         'tutor2'        => 'Tutor 2',
     ],
     'principals' => [
-        'title'       => 'Directores',
-        'list'        => 'Lista de directores',
-        'create'      => 'Agregar nuevo usuario',
-        'update'      => 'Actualizar mis datos',
+        'title'  => 'Directores',
+        'single' => 'Director',
+        'list'   => 'Lista de directores',
+        'create' => 'Agregar nuevo usuario',
+        'update' => 'Actualizar mis datos',
     ],
     'users' => [
         'title' => 'Usuarios',

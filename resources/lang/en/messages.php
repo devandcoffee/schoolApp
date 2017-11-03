@@ -13,10 +13,11 @@ return [
         'tutor2'        => 'Tutor 2',
     ],
     'principals' => [
-        'title'       => 'Principals',
-        'list'        => 'Principals list',
-        'create'      => 'Create a new user',
-        'update'      => 'Update principal data',
+        'title'  => 'Principals',
+        'single' => 'Principal',
+        'list'   => 'Principals list',
+        'create' => 'Create a new user',
+        'update' => 'Update principal data',
     ],
     'users' => [
         'title' => 'Users',
