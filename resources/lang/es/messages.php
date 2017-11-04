@@ -49,6 +49,11 @@ return [
         'create'      => 'Agregar datos del tutor :num',
         'update'      => 'Actualizar datos del tutor',
     ],
+    'docs' => [
+        'title'  => 'Actas',
+        'list'   => 'Lista de Actas',
+        'create' => 'Agregar nueva acta',
+    ],
     'buttons' => [
         'accept'     => 'Aceptar',
         'cancel'     => 'Cancelar',

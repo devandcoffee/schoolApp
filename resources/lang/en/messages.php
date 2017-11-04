@@ -49,6 +49,11 @@ return [
         'create'      => 'Add tutor :num data',
         'update'      => 'Update tutor data',
     ],
+    'docs' => [
+        'title'  => 'Docs',
+        'list'   => 'Doc list',
+        'create' => 'Create a new doc',
+    ],
     'buttons' => [
         'accept'     => 'Accept',
         'cancel'     => 'Cancel',
