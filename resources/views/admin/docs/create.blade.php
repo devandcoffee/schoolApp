@@ -23,8 +23,14 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="form-horizontal" action="{{ route('docs.store') }}" method="post">
+                        <form id="form-doc" class="form-horizontal" action="{{ route('docs.store') }}" method="post">
                             {{ csrf_field() }}
+
+                            <div class="form-group{{ $errors->has('docket_number') ? ' has-error' : '' }}">
+                                <div class="col-sm-6">
+                                    <autocomplete entity="autocomplete"></autocomplete>
+                                </div>
+                            </div>
 
                             <textarea name="text" id="editor">
                             </textarea>
@@ -32,7 +38,7 @@
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <a href="{{ route('docs.index') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>
-                                    <button type="submit" class="btn btn-primary">@lang('messages.buttons.create')</button>
+                                    <button type="submit" class="btn btn-primary" @keypress.enter.prevent="onKeyPress">@lang('messages.buttons.create')</button>
                                 </div>
                             </div>
                         </form>

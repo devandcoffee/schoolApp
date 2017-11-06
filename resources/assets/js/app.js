@@ -21,6 +21,8 @@ Vue.component('datatable', require('./components/Datatable.vue'));
 
 Vue.component('selectbasedon', require('./components/SelectBasedOn.vue'));
 
+Vue.component('autocomplete', require('./components/Autocomplete.vue'));
+
 const app = new Vue({
     el: '#app'
 });

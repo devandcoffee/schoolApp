@@ -24,6 +24,10 @@ Route::group(
             'uses' => 'StudentController@students',
         ]);
 
+        Route::get('/autocomplete', [
+            'uses' => 'StudentController@autocomplete',
+        ]);
+
         Route::get('/city', [
             'uses' => 'StudentController@city',
         ]);

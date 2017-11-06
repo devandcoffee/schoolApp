@@ -160,4 +160,26 @@ class StudentController extends Controller
         $cities = City::where('country_id', $request->field1)->orderBy('name')->get();
         return response()->json($cities);
     }
+
+    public function autocomplete(Request $request)
+    {
+        $students = Student::whereHas('person', function($query) use($request) {
+            $query->filter($request->filter);
+        })->get();
+        foreach ($students as $student) {
+            $student->identity_id = $student->person->identity_id;
+            $student->firstname = $student->person->firstname;
+            $student->lastname = $student->person->lastname;
+            $student->email = $student->person->email;
+            $student->avatar = $student->person->avatar;
+            $student->gender = $student->person->gender;
+            $student->birthdate = $student->person->birthdate->format('d-m-Y');
+            $student->address = $student->person->address;
+            $student->country = $student->person->country->name;
+            $student->city = $student->person->city->name;
+            $student->mobile_phone = $student->person->mobile_phone;
+        }
+
+        return response()->json($students);
+    }
 }
