@@ -53,6 +53,7 @@ return [
         'title'  => 'Docs',
         'list'   => 'Doc list',
         'create' => 'Create a new doc',
+        'single' => 'Doc created at :date from :from to :to',
     ],
     'buttons' => [
         'accept'     => 'Accept',
