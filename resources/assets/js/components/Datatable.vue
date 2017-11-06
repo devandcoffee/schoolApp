@@ -6,7 +6,7 @@
                 <input class="form-control search-input" placeholder="Search..." v-model="filterInput">
             </div>
         </form>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th v-for="(value, key) in config.columns">

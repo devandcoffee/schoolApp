@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\DocRequest;
 use App\Doc;
+use Session;
 
 class DocController extends Controller
 {
@@ -14,7 +17,7 @@ class DocController extends Controller
      */
     public function index()
     {
-        $docs = Doc::all();
+        $docs = Doc::paginate(10);
         return view('admin.docs.index', ['docs' => $docs]);
     }
 
@@ -34,9 +37,16 @@ class DocController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocRequest $request)
     {
-        dd($request->text);
+        $user = Auth::user();
+        $data = $request->only(['student_id', 'text']);
+        $data['person_id'] = $user->principal->person_id;
+
+        $doc = Doc::create($data);
+
+        Session::flash('success', __('messages.flash.doc_created'));
+        return redirect()->route('docs.index');
     }
 
     /**

@@ -75,5 +75,7 @@ return [
         'principal_updated' => 'Tus datos se han actualizado!',
         'teacher_created'   => 'Nuevo profesor agregado!',
         'teacher_updated'   => 'Tus datos se han actualizado!',
+        'doc_created'       => 'Nueva acta creada!',
+        'doc_updated'       => 'Acta actualizada!',
     ],
 ];

@@ -19,7 +19,7 @@ class CreateDocsTable extends Migration
             $table->foreign('student_id')->references('id')->on('students');
             $table->integer('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons');
-            $table->string('text');
+            $table->text('text');
             $table->timestamps();
         });
     }

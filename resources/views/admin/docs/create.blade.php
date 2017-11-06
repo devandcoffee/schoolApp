@@ -32,8 +32,7 @@
                                 </div>
                             </div>
 
-                            <textarea name="text" id="editor">
-                            </textarea>
+                            <textarea name="text" id="editor"></textarea>
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-6">

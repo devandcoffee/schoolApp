@@ -37308,7 +37308,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "text"
+      "type": "text",
+      "placeholder": "Buscar alumno"
     },
     domProps: {
       "value": (_vm.filterInput)
@@ -37339,7 +37340,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     attrs: {
       "type": "hidden",
-      "name": "id"
+      "name": "student_id"
     },
     domProps: {
       "value": (_vm.value)
@@ -37410,7 +37411,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })])]), _vm._v(" "), _c('table', {
-    staticClass: "table table-bordered"
+    staticClass: "table table-bordered table-striped"
   }, [_c('thead', [_c('tr', [_vm._l((_vm.config.columns), function(value, key) {
     return _c('th', [_vm._v("\n                    " + _vm._s(_vm._f("capitalize")(value)) + "\n                ")])
   }), _vm._v(" "), (_vm.config.view) ? _c('th', [_vm._v("View")]) : _vm._e(), _vm._v(" "), (_vm.config.edit) ? _c('th', [_vm._v("Edit")]) : _vm._e(), _vm._v(" "), (_vm.config.delete) ? _c('th', [_vm._v("Delete")]) : _vm._e()], 2)]), _vm._v(" "), _c('tbody', _vm._l((_vm.filteredData), function(elem) {

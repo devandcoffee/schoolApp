@@ -75,5 +75,7 @@ return [
         'principal_updated' => 'Principal Updated',
         'teacher_created'   => 'Teacher Created',
         'teacher_updated'   => 'Teacher Updated',
+        'doc_created'       => 'Doc Created',
+        'doc_updated'       => 'Doc Updated',
     ],
 ];

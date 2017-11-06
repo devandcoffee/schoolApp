@@ -1,12 +1,12 @@
 <template>
     <div style="position:relative" v-bind:class="{ 'open': open }">
         <label>Buscar Alumno</label>
-        <input class="form-control" type="text" v-model="filterInput"
+        <input class="form-control" type="text" placeholder="Buscar alumno" v-model="filterInput"
             @keydown.enter.prevent="enter"
             @keydown.down="down"
             @keydown.up="up"
         >
-        <input type="hidden" name="id" v-model="value">
+        <input type="hidden" name="student_id" v-model="value">
         <ul class="dropdown-menu" style="width:100%">
             <li v-for="(suggestion, index) in suggestions"
                 v-bind:class="{'active': isActive(index)}"

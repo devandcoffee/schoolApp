@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doc extends Model
 {
+    protected $with = ['person', 'student'];
+
     protected $fillable = [
         'person_id',
         'student_id',
