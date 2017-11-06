@@ -53,6 +53,7 @@ return [
         'title'  => 'Actas',
         'list'   => 'Lista de Actas',
         'create' => 'Agregar nueva acta',
+        'single' => 'Acta del :date creada por :from para el estudiante :to',
     ],
     'buttons' => [
         'accept'     => 'Aceptar',
