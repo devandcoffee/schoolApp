@@ -30,7 +30,7 @@
                                         <td>{{ $doc->id }}</td>
                                         <td>{{ $doc->person->firstname }} {{ $doc->person->lastname }}</td>
                                         <td>{{ $doc->student->person->firstname }} {{ $doc->student->person->lastname }}</td>
-                                        <td>{{ $doc->created_at->format('d-m-Y') }}</td>
+                                        <td>{{ $doc->created_at->format('d-m-Y H:i:s') }}</td>
                                         <td><a href="{{ route('docs.show', ['doc' => $doc->id]) }}"><span class="fa-eye"></span></a></td>
                                         <td><a href="{{ route('docs.edit', ['doc' => $doc->id]) }}"><span class="fa-pencil"></span></a></td>
                                     </tr>

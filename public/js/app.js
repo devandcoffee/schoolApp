@@ -14121,22 +14121,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    },
+    mounted: function mounted() {},
 
-    props: ['entity'],
+    props: ['entity', 'student'],
     data: function data() {
+        var student = JSON.parse(this.student);
         return {
             loading: true,
             open: false,
             current: 0,
             suggestions: [],
-            filterInput: '',
-            value: ''
+            filterInput: student.name || '',
+            value: student.value || ''
         };
     },
 
@@ -37370,7 +37368,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": "#"
       }
-    }, [_vm._v(_vm._s(suggestion.firstname) + " "), _c('small', [_vm._v(_vm._s(suggestion.lastname))])])])
+    }, [_vm._v(_vm._s(suggestion.firstname) + " " + _vm._s(suggestion.lastname))])])
   }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

@@ -12,8 +12,7 @@
                 v-bind:class="{'active': isActive(index)}"
                 @click="suggestionClick(index)"
             >
-              <a href="#">{{ suggestion.firstname }} <small>{{ suggestion.lastname }}</small>
-              </a>
+                <a href="#">{{ suggestion.firstname }} {{ suggestion.lastname }}</a>
             </li>
         </ul>
     </div>
@@ -22,19 +21,20 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
         },
         props: [
             'entity',
+            'student',
         ],
         data(){
+            let student = JSON.parse(this.student)
             return {
                 loading: true,
                 open: false,
                 current: 0,
                 suggestions: [],
-                filterInput: '',
-                value: '',
+                filterInput: student.name || '',
+                value: student.value || '',
             }
         },
         methods: {

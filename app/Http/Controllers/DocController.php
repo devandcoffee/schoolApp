@@ -66,9 +66,13 @@ class DocController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Doc $doc)
     {
-        //
+        $student = [
+            'name'  => $doc->student->person->firstname . ' ' . $doc->student->person->lastname,
+            'value' => $doc->student->id,
+        ];
+        return view('admin.docs.edit', ['doc' => $doc, 'student' => $student]);
     }
 
     /**
