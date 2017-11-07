@@ -38,7 +38,7 @@
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-6">
-                                    <a href="{{ route('students') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>
+                                    <a href="{{ route('docs.index') }}" class="btn btn-default">@lang('messages.buttons.cancel')</a>
                                     <button type="submit" class="btn btn-primary">@lang('messages.buttons.update')</button>
                                 </div>
                             </div>
