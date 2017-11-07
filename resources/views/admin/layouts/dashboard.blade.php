@@ -142,8 +142,8 @@
                                 <li class="{{ (Request::is('*students') ? 'active' : '') }}">
                                     <a href="{{ url ('students') }}">@lang('messages.students.list')</a>
                                 </li>
-                                <li class="{{ (Request::is('*students/proceedings') ? 'active' : '') }}">
-                                    <a href="{{ url ('proceedings' ) }}">@lang('messages.students.proceedings')</a>
+                                <li class="{{ (Request::is('*docs') ? 'active' : '') }}">
+                                    <a href="{{ url ('docs' ) }}">@lang('messages.students.proceedings')</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

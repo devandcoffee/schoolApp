@@ -49,6 +49,12 @@ return [
         'create'      => 'Add tutor :num data',
         'update'      => 'Update tutor data',
     ],
+    'docs' => [
+        'title'  => 'Docs',
+        'list'   => 'Doc list',
+        'create' => 'Create a new doc',
+        'single' => 'Doc created at :date from :from to :to',
+    ],
     'buttons' => [
         'accept'     => 'Accept',
         'cancel'     => 'Cancel',
@@ -70,5 +76,7 @@ return [
         'principal_updated' => 'Principal Updated',
         'teacher_created'   => 'Teacher Created',
         'teacher_updated'   => 'Teacher Updated',
+        'doc_created'       => 'Doc Created',
+        'doc_updated'       => 'Doc Updated',
     ],
 ];

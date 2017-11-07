@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('principals', 'PrincipalController');
 
+    Route::resource('docs', 'DocController');
+
     Route::get('students/{student}/tutors/create', [
         'uses' => 'TutorController@create',
         'as' => 'tutors.create',

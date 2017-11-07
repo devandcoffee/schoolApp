@@ -49,6 +49,12 @@ return [
         'create'      => 'Agregar datos del tutor :num',
         'update'      => 'Actualizar datos del tutor',
     ],
+    'docs' => [
+        'title'  => 'Actas',
+        'list'   => 'Lista de Actas',
+        'create' => 'Agregar nueva acta',
+        'single' => 'Acta del :date creada por :from para el estudiante :to',
+    ],
     'buttons' => [
         'accept'     => 'Aceptar',
         'cancel'     => 'Cancelar',
@@ -70,5 +76,7 @@ return [
         'principal_updated' => 'Tus datos se han actualizado!',
         'teacher_created'   => 'Nuevo profesor agregado!',
         'teacher_updated'   => 'Tus datos se han actualizado!',
+        'doc_created'       => 'Nueva acta creada!',
+        'doc_updated'       => 'Acta actualizada!',
     ],
 ];
