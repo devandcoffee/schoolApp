@@ -17,7 +17,7 @@ class DocController extends Controller
      */
     public function index()
     {
-        $docs = Doc::paginate(10);
+        $docs = Doc::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.docs.index', ['docs' => $docs]);
     }
 
