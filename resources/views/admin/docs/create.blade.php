@@ -27,8 +27,15 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('student_id') ? ' has-error' : '' }}">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <autocomplete entity="autocomplete" student="{{ json_encode([]) }}"></autocomplete>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('created_at') ? ' has-error' : '' }}">
+                                <div class="col-sm-4">
+                                    <label for="created_at">@lang('messages.docs.created_at'):</label>
+                                    <input type="text" class="form-control datepicker" name="created_at" id="created_at" placeholder="{{ __('messages.docs.created_at') }}" value="{{ old('created_at') }}">
                                 </div>
                             </div>
 

@@ -14,6 +14,8 @@ class Doc extends Model
         'text',
     ];
 
+    public $timestamps = false;
+
     public function person()
     {
         return $this->belongsTo('App\Person');

@@ -50,10 +50,11 @@ return [
         'update'      => 'Actualizar datos del tutor',
     ],
     'docs' => [
-        'title'  => 'Actas',
-        'list'   => 'Lista de Actas',
-        'create' => 'Agregar nueva acta',
-        'single' => 'Acta del :date creada por :from para el estudiante :to',
+        'title'      => 'Actas',
+        'list'       => 'Lista de Actas',
+        'create'     => 'Agregar nueva acta',
+        'single'     => 'Acta del :date creada por :from para el estudiante :to',
+        'created_at' => 'Fecha del Acta',
     ],
     'buttons' => [
         'accept'     => 'Aceptar',

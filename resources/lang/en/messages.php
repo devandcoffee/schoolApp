@@ -50,10 +50,11 @@ return [
         'update'      => 'Update tutor data',
     ],
     'docs' => [
-        'title'  => 'Docs',
-        'list'   => 'Doc list',
-        'create' => 'Create a new doc',
-        'single' => 'Doc created at :date from :from to :to',
+        'title'      => 'Docs',
+        'list'       => 'Doc list',
+        'create'     => 'Create a new doc',
+        'single'     => 'Doc created at :date from :from to :to',
+        'created_at' => 'Document date',
     ],
     'buttons' => [
         'accept'     => 'Accept',
